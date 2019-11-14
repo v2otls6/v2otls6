@@ -1,0 +1,71 @@
+/* www.crickety.com */
+
+.crickety {
+  display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+  #mainpage h2 {
+    font-size: 2rem; /*rel to 10px BS <html> default */
+  }
+
+  #itempage h1 {
+    font-size: 3rem; /*rel to 10px BS <html> default */
+  }
+}
+
+.clearer {
+  clear: both;
+  display: block;
+  height: 1px;
+}
+
+h1, h2, h3 {
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.writepost {
+  line-height: 24px;
+  padding: 4px;
+  width: 100%;
+  background-color: #76d782;
+  font-weight: bold;
+}
+
+h1, h2, h1 a, h2 a {
+  font-weight: 900;
+}
+
+/*mainpage*/
+
+#mainpage .continue {
+  display: none !important;
+}
+
+#mainpage .Author i, #mainpage .author i {
+  font-style: normal;
+  font-weight: normal;
+}
+
+#mainpage .post1 h2, #mainpage .title {
+  z-Index: 1;
+}
+
+/*itempage*/
+
+#itempage .tags, #itempage .DateCreated, #itempage .date {
+  display: none !important;
+}
+
+#itempage .post_img {
+  float: right;
+  width: 300px;
+  max-width: 50%;
+  margin: 0 0 10px 10px;
+}
+
+#itempage .post_img img {
+  width: 100%;
+}

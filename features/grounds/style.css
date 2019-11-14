@@ -1,0 +1,253 @@
+ v\\:* {
+behavior:url(#default#VML)
+}
+
+* {
+	font-family:Arial, Helvetica, sans-serif
+}
+
+body,
+p,
+ul,
+li,
+h1,
+h2,
+h3,
+iframe {
+	margin:0;
+	padding:0
+}
+
+img,
+iframe {
+	border:none
+}
+
+table {
+	border-collapse:collapse;
+	padding:0;
+	border-spacing:0;
+	border:none
+}
+
+td {
+	padding:0;
+	border:none
+}
+
+/* wcgwrap */
+
+#wcgwrap p {
+	font-size : 12px;
+	color: #000000;
+	overflow: hidden;
+	word-wrap: break-word;
+	margin: 0;
+	padding: 0;
+}
+
+#wcgwrap h1 {
+	color: #CC0000;
+	font-size: 30px;
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
+	line-height: 30px;
+	text-transform: capitalize;
+	letter-spacing: -0.06em;
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+#wcgwrap .copyright {
+	font-size: 10px;
+	font-family: Arial, sans-serif, Helvetica;
+	color: #FFFFFF;
+	line-height: 11px;
+}
+
+#wcgwrap .copyright a {
+	text-decoration: none;
+}
+
+#wcgwrap .loginlogout {
+	color: #FFFFFF;
+	font-size: 10px;
+	padding: 10px 20px 0 0;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+#wcgwrap .storenav {
+	text-align: left;
+	font-size: 12px;
+	margin: 10px 50px 5px 50px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+#wcgwrap .storenav a {
+}
+
+#wcgwrap #map {
+	height: 500px;
+	width: 580px;
+}
+
+#wcgwrap .countrytd {
+	padding: 2px 0 2px 0;
+}
+
+#wcgwrap h2 {
+	font-size: 12px;
+	margin: 0;
+	padding: 2px 5px 5px 2px;
+}
+
+#wcgwrap h2 a {
+	font-size: 12px;
+	line-height: 12px;
+	font-weight: normal;
+}
+
+#wcgwrap h3 {
+	font-size: 11px;
+	margin: 0;
+	padding: 3px;
+}
+
+#wcgwrap #infowindow {
+	font-size:11px;
+	background-color: #FFFFFF;
+	border: none;
+}
+
+#wcgwrap .elabelstyle {
+	color: #ffffff;
+	font-size: 16px;
+	margin: 0;
+	padding: 16px 0 5px 0;
+	text-transform: capitalize;
+	width:200px;
+	background-color: #444444;
+	text-align:center;
+	background-repeat:no-repeat;
+}
+
+#wcgwrap .groundsmenu {
+	font-size: 12px;
+	margin: 5px 0 5px 0;
+}
+
+#wcgwrap .groundsmenu a {
+	padding: 0px;
+	margin: 0px;
+}
+
+#wcgwrap h4 {
+	padding: 4px;
+	margin: 0;
+	font-size: 12px;
+	text-align: left;
+}
+
+#wcgwrap #side_bar {
+	background:#eee;
+	height: 490px;
+	margin: 0;
+	overflow: auto;
+	padding: 5px;
+	text-align: left;
+	width: 140px;
+}
+
+#wcgwrap #side_bar a {
+}
+
+#wcgwrap .stadiumdiv {
+	margin: 10px 0 0 0;
+}
+
+#wcgwrap .stadiumdiv td {
+	padding:5px;
+}
+
+#wcgwrap .stadiumtr0 {
+	background-color:#eee;
+}
+
+#wcgwrap .stadiumtr1 {
+	background-color:#ddd;
+}
+
+#wcgwrap .navigation {
+	font-size: 12px;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #156286;
+}
+
+#wcgwrap .navigation a {
+	text-decoration: none;
+}
+
+#wcgwrap .navigation a:hover {
+	text-decoration: underline;
+}
+
+#wcgwrap .wcgtop {
+	margin: 10px auto;
+}
+
+#wcgwrap .ifwrap {
+}
+
+#wcgwrap .as_T {
+	text-align: center;
+}
+
+#wcgwrap .stadlistwrap {
+	margin: 0 0 20px 0;
+}
+
+#wcgwrap .as_B {
+	width: 728px;
+	margin: 10px auto;
+	height: 90px;
+}
+
+/* /wcgwrap */
+#wcgwrap .copyright a {
+	text-decoration: underline;
+}
+
+.ifwtd2 {
+}
+
+.as_wcg_R {
+}
+
+.ifwtd2 {
+	vertical-align:top
+}
+
+.as_wcg_R {
+	width:160px;
+	overflow:hidden
+}
+
+.mnutd {
+	width:150px
+}
+
+#wcgwrap iframe {
+	border:0;
+	height:600px;
+	width:735px;
+border;
+none;
+	overflow: hidden;
+}
+
+#wcgindex {
+	width:900px;
+	margin:20px auto;
+}
