@@ -1111,8 +1111,7 @@ if (thsSiteTyp == "store") {
 	//// STORE CHANNELS
 	var ad_Channel = (ThsBlg_pg == 'mainpage') ? '7699504246' : '7699504246';
 	var lu_Channel = (ThsBlg_pg == 'mainpage') ? '1712053793' : '1712053793';
-	
-		//// STORE BOTH MAINPAGE+ITEMPAGE LINKU ON DTP SIDEBAR
+	//// STORE BOTH MAINPAGE+ITEMPAGE LINKU ON DTP SIDEBAR
 	var a = !detectmob() ? prependHTML('leftbar', '<div style="max-width:300px ; max-height:600px; min-height:100px; margin-bottom:10px;"><div id="as_sb1"></div></div>') : '';
 	asadRespId(
 		'<div style="text-align:center;width:90%;">',
@@ -1141,18 +1140,32 @@ if (thsSiteTyp == "store") {
 		"link"
 	);
 	// 
-	////  STORE JQ /// 
-	// --- /AS
+	////////
+	function amazonCleanUrl(strURL, strTLD, strAffId) {
+		// v3 
+		if (strURL.match("/(?!/e|st)../([A-Z0-9]{10})") === null) {
+			return strURL;
+		} else {
+			var strAsin = strURL.match("/(?!/e|st)../([A-Z0-9]{10})")[1] || strURL;
+			//    return "https://www.amazon." + strTLD + "/exec/obidos/ASIN/" + strAsin + "/" + strAffId; /// old style
+			return "https://www.amazon." + strTLD + "/dp/" + strAsin + "?tag=" + strAffId; /// new    
+		}
+	}
+	///// store jq /////
 	$(function() {
-		// ========= mainpage =========
-		if (ThsBlg_pg == 'mainpage') {
-			//  
-		}
-		// ========= itempage =========
-		if (ThsBlg_pg == 'itempage') {
-			// 
-		}
 		// ========= ALL =========
+		// 
+		/// amz url clean
+		// *** CLEAN ALL AMZ API URLS to .com/dp/xxx?tag=yyy ***
+		$('.postbody a').each(function(index) {
+			var aurl = $(this).attr('href');
+			if (aurl.match(/(amazon\.|amzn\.)/igm)) {
+				var a = amazonCleanUrl(aurl, "com", thsBlg_amz.com);
+				$(this).attr('href', a);
+				// console.log(a);
+			}
+		});
+		//// amz url clean
 		// 
 		// 
 		$('.postbody h3 a').each(function(index) {
