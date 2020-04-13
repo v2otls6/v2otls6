@@ -1,4 +1,4 @@
-//// store...
+//// www, store...
 // -------------------------------------
 // ---- FIRS EXEC ALL ----
 // -------------------------------------
@@ -24,7 +24,7 @@ thsBlg_epn = "5337904756";
 thsBlg_dyn_catcher = "www.crickety.com/common/c/";
 ThsBlg_aT_cd = 'crickety';
 thsBlg_img_cdn = "i.crickety.com/i/common/";
-thsBlg_gasJsnPrx = "AKfycbzA3o3wb4WmHatW3ZaGqY3B5sRNVPNgluG8jyq3HdwJHgZqxwk";
+thsBlg_gasJsnPrx = "\x41\x4B\x66\x79\x63\x62\x7A\x41\x33\x6F\x33\x77\x62\x34\x57\x6D\x48\x61\x74\x57\x33\x5A\x61\x47\x71\x59\x33\x42\x35\x73\x52\x4E\x56\x50\x4E\x67\x6C\x75\x47\x38\x6A\x79\x71\x33\x48\x64\x77\x4A\x48\x67\x5A\x71\x78\x77\x6B";
 // 
 // 
 // 
@@ -347,6 +347,7 @@ function asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWid
 	}
 }
 
+ 
 function addthisN(divId, url, title, template) {
 	/**
 	- V2 - 
@@ -449,12 +450,7 @@ function disqusAsync(disqusId, divId) {
 }
 
 function addthisAsync() {
-	addthis_config = {
-		pubid: ThsBlg_adth_co
-	};
-	var addthisScript = document.createElement('script');
-	addthisScript.setAttribute('src', 'https://s7.addthis.com/js/300/addthis_widget.js#domready=1');
-	document.body.appendChild(addthisScript);
+return;
 }
 // --- GooFeeAPI
 // v1 - REQ JQR
@@ -914,13 +910,7 @@ function gettags_main(str) {
 }
 
 function addThisContainer() {
-	var a = '' +
-		'<style> a.at-share-btn {float:left;}</style>' +
-		'<div style="margin:0; display:inline-block;">' +
-		'<div class="addthis_sharing_toolbox"></div>' +
-		'</div>' +
-		'';
-	return a;
+
 }
 // 
 // 
@@ -1113,11 +1103,11 @@ if (thsSiteTyp == "www") {
 		writeInnerHTMLByClass("as_all_T0", '' +
 			'<div class="clearer"></div>' +
 			'<table style="width:100%"><tr>' +
-			'<td> <a style="height:34px" href="' +
-			'#' +
-			// '//c.crickety.com/signin/login.php'+
+			'<td> <a style="" href="' +
+			// '#' +
+			'//a.crickety.com/writepost/'+
 			'" class="writepost btn btn-default" role="button">Write a Post</a>   </td>  ' +
-			'<td style="width:148px">  <div style="height:34px;float:right;"> ' + addThisContainer() + ' </div> </td>' +
+			// '<td style="width:148px">  <div style="height:34px;float:right;"> ' + addThisContainer() + ' </div> </td>' +
 			'</tr></table>' +
 			'<div class="clearer"></div>' +
 			'');
@@ -1139,7 +1129,7 @@ if (thsSiteTyp == "www") {
 			$('#ldngPrgssBar').remove();
 		}
 		// ALL
-		addthisAsync();
+		// addthisAsync();
 	});
 	// 
 	// 
@@ -1320,7 +1310,7 @@ $(window).on("load", function() {
 		// 
 		if (ThsBlg_pg == 'itempage') {
 			insertAfterHTMLByClass('postbody', '<div style="display:table;margin:10px auto;" id="addths_rec"></div>');
-			addthisN('addths_rec');
+			// addthisN('addths_rec');
 		}
 	}
 	//

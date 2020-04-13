@@ -27,11 +27,14 @@ h1, h2, h3 {
 }
 
 .writepost {
-  line-height: 24px;
-  padding: 4px;
-  width: 100%;
+  line-height: 1em;
+  padding: 8px 5px;
   background-color: #76d782;
   font-weight: bold;
+  text-shadow: -1px -1px #eee;
+  font-size: 18px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 h1, h2, h1 a, h2 a {
