@@ -347,7 +347,6 @@ function asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWid
 	}
 }
 
- 
 function addthisN(divId, url, title, template) {
 	/**
 	- V2 - 
@@ -423,7 +422,6 @@ function addthisN(divId, url, title, template) {
 	document.getElementById(divId).insertAdjacentHTML("beforeend", rrssbHTML);
 }
 
-
 function addthis_async_append(divId, customUrlTitle, url, title) {}
 
 function disqusAsync(disqusId, divId) {
@@ -450,7 +448,7 @@ function disqusAsync(disqusId, divId) {
 }
 
 function addthisAsync() {
-return;
+	return;
 }
 // --- GooFeeAPI
 // v1 - REQ JQR
@@ -909,9 +907,7 @@ function gettags_main(str) {
 	return texts[0];
 }
 
-function addThisContainer() {
-
-}
+function addThisContainer() {}
 // 
 // 
 function mainpage() {
@@ -1104,8 +1100,10 @@ if (thsSiteTyp == "www") {
 			'<div class="clearer"></div>' +
 			'<table style="width:100%"><tr>' +
 			'<td> <a style="" href="' +
-			// '#' +
-			'//a.crickety.com/writepost/'+
+			// 
+			'#' +
+			// '//a.crickety.com/writepost/' +
+			// 
 			'" class="writepost btn btn-default" role="button">Write a Post</a>   </td>  ' +
 			// '<td style="width:148px">  <div style="height:34px;float:right;"> ' + addThisContainer() + ' </div> </td>' +
 			'</tr></table>' +
@@ -1188,7 +1186,6 @@ if (thsSiteTyp == "store") {
 			//    return "https://www.amazon." + strTLD + "/exec/obidos/ASIN/" + strAsin + "/" + strAffId; /// old style
 			// return "https://www.amazon." + strTLD + "/dp/" + strAsin + "?tag=" + strAffId; /// clean no params    
 			return "https://www.amazon." + strTLD + "/dp/" + strAsin + "?tag=" + strAffId + '&linkCode=osi&th=1&psc=1'; /// api v5 url
-
 		}
 	}
 	///// store jq /////

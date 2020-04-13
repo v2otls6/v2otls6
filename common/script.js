@@ -1101,8 +1101,8 @@ if (thsSiteTyp == "www") {
 			'<table style="width:100%"><tr>' +
 			'<td> <a style="" href="' +
 			// 
-			'#' +
-			// '//a.crickety.com/writepost/' +
+			// '#' + //// to disable 
+			'//a.crickety.com/writepost/' + /// writepost
 			// 
 			'" class="writepost btn btn-default" role="button">Write a Post</a>   </td>  ' +
 			// '<td style="width:148px">  <div style="height:34px;float:right;"> ' + addThisContainer() + ' </div> </td>' +
