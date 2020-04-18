@@ -9,6 +9,19 @@
 <generator>PHP5</generator>
 <category>  </category>
 	<item>
+		<title> Cricket History Podcasts </title>
+		<link> https://www.crickety.com/cricket-history-podcasts_v2432.html </link>
+		<description>
+		<![CDATA[
+		I've produced a series of podcasts on the early history of Aborigine Australian, Indian and West Indian cricketers in England. It's called A Flash Outside The Off Stump and you ...
+		]]>
+		</description>
+		<pubDate>Wed, 25 Apr 2018 05:26:32 EST</pubDate>
+		<guid isPermaLink="false">  432CricketHistoryPodcasts432 </guid>
+		<author> nobody@blogger.com (Andy Carter)   </author>
+		<category> 1 </category>
+	</item>
+		<item>
 		<title> Sri Lanka &amp; Pakistan - When the World conspires... </title>
 		<link> https://www.crickety.com/sri-lanka-pakistan-when-the-world-conspires_v2430.html </link>
 		<description>
@@ -384,19 +397,6 @@
 		<guid isPermaLink="false">  258SachinTendulkarisGodofCricket258 </guid>
 		<author> nobody@blogger.com (premnayagam)   </author>
 		<category> 5 </category>
-	</item>
-		<item>
-		<title> Cricket Product Testers Required </title>
-		<link> https://www.crickety.com/cricket-product-testers-required_v2257.html </link>
-		<description>
-		<![CDATA[
-		I am part of a working group linked to Loughborough University in the UK, focussed on demonstrating the benefit of directing R&amp;D funding to driving true innovation in safety and ...
-		]]>
-		</description>
-		<pubDate>Sat, 01 Aug 2009 01:01:01 EST</pubDate>
-		<guid isPermaLink="false">  257CricketProductTestersRequired257 </guid>
-		<author> nobody@blogger.com (SportsSafety)   </author>
-		<category> 1 </category>
 	</item>
 	</channel>
 </rss>
