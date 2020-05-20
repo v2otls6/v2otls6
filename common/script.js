@@ -25,7 +25,6 @@ thsBlg_amz = {
 	'def_node': '', //'9003130011',
 	'def_node_2': '', //'9003130011',
 };
-
 thsBlg_epn = "5337904756";
 thsBlg_dyn_catcher = "www.crickety.com/common/c/";
 ThsBlg_aT_cd = 'crickety';
@@ -1154,7 +1153,10 @@ if (thsSiteTyp == "www") {
 	$(window).on("load", function() {
 		// itempage
 		if (ThsBlg_pg == 'itempage') {
-			$(".disqcom").html('<div id="disqus_thread"></div>');
+			$(".disqcom").html(
+				'<div id="disqus_thread"></div>' +
+				'<div style="padding: 150px 0"></div>' + // req imp for disq mob!
+				'');
 			disqusAsync(ThsBlg_dsqs, 'disqus_thread');
 			$('#ldngPrgssBar').remove();
 		}
@@ -1277,7 +1279,6 @@ $(window).on("load", function() {
 	// 
 	if (thsSiteTyp == "store") {
 		// 
-
 		if (ThsBlg_pg == 'itempage') {
 			// --- AFF IN SIDEBAR
 			// DTP STR AFF SB
