@@ -1,74 +1,21 @@
-/* www.crickety.com */
-
 .crickety {
   display: none !important;
+  visibility: hidden !important;
 }
 
-@media screen and (max-width: 768px) {
-  #mainpage h2 {
-    font-size: 2rem; /*rel to 10px BS <html> default */
-  }
-
-  #itempage h1 {
-    font-size: 3rem; /*rel to 10px BS <html> default */
-  }
-}
-
-.clearer {
-  clear: both;
-  display: block;
-  height: 1px;
-}
-
-h1, h2, h3 {
-  -moz-hyphens: auto;
-  -webkit-hyphens: auto;
-  hyphens: auto;
-}
-
-.writepost {
-  line-height: 1em;
-  padding: 8px 5px;
-  background-color: #76d782;
-  font-weight: bold;
-  text-shadow: -1px -1px #eee;
-  font-size: 18px;
-  width: 100%;
-  margin: 0 auto;
-}
-
-h1, h2, h1 a, h2 a {
-  font-weight: 900;
-}
-
-/*mainpage*/
-
-#mainpage .continue {
-  display: none !important;
-}
-
-#mainpage .Author i, #mainpage .author i {
-  font-style: normal;
-  font-weight: normal;
-}
-
-#mainpage .post1 h2, #mainpage .title {
-  z-Index: 1;
-}
-
-/*itempage*/
-
-#itempage .tags, #itempage .DateCreated, #itempage .date {
-  display: none !important;
-}
-
-#itempage .post_img {
+.img_src {
+  width: 60%;
+  max-width: 400px;
   float: right;
-  width: 300px;
-  max-width: 50%;
-  margin: 0 0 10px 10px;
+  margin: 10px 0 10px 10px;
+  @media screen and (max-width: 800px) {}
 }
 
-#itempage .post_img img {
+.img_src img {
   width: 100%;
+}
+
+.disqcom {
+  width: 95%;
+  margin: 15px auto;
 }
