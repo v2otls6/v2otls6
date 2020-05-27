@@ -1,0 +1,21 @@
+.crickety {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.img_src {
+  width: 60%;
+  max-width: 400px;
+  float: right;
+  margin: 10px 0 10px 10px;
+  @media screen and (max-width: 800px) {}
+}
+
+.img_src img {
+  width: 100%;
+}
+
+.disqcom {
+  width: 95%;
+  margin: 15px auto;
+}
