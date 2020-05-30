@@ -2,7 +2,7 @@
 // all ::WEBSITE:: 2b chnged
 // 
 ///////// ::WEBSITE:: ////////
-var urlWritepost = "a.crickety.com/writepost/";
+var urlWritepost = "https://a.crickety.com/writepost/";
 forumId = (typeof forumId === "undefined") ? 1 : forumId;
 ThsBlg_dsqs = "crickety";
 
