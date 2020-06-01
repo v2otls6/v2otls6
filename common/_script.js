@@ -3,10 +3,9 @@
 // 
 ///////// ::WEBSITE:: ////////
 var urlWritepost = "https://a.crickety.com/writepost/";
+var htmlWritepost = '<a style="height:34px;width:75vw;max-width:800px;text-transform: uppercase;letter-spacing: 2px;color:black;" href="' + urlWritepost + '" target="_top" class="writepost btn btn-warning" role="button"><b>Write a Post</b></a>';
 forumId = (typeof forumId === "undefined") ? 1 : forumId;
 ThsBlg_dsqs = "crickety";
-
-
 // 
 // 
 // ///////// ALL SAME FROM HERE /////////////
@@ -431,15 +430,7 @@ $(document).ready(function() {
 		'<div class="clearer"></div>' +
 		'<div style="width:90%;margin:0 auto">' +
 		'<table style="width:100%"><tr>' +
-		'<td> <a style="height:34px" href="' +
-		// '#' + //// if disabled
-		urlWritepost +
-		'" target="_top" class="writepost btn btn-success" role="button"><b>Write a Post</b></a>   </td>  ' + ////  
-		// either addthis or twitter native
-		// addths
-		// '<td style="width:148px">  <div style="height:34px;float:right;"> ' + addThisContainer() + ' </div> </td>' +
-		// tw native btn
-		'<td style="width:200px">  <div id="twBtn" style="width:100%;height:34px;float:right;"> </div> </td>' +
+		'<td>' + htmlWritepost + '</td>  ' +
 		'</tr></table>' +
 		'</div>' +
 		'<div class="clearer"></div>' +
