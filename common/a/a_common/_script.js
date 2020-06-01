@@ -1,4 +1,4 @@
-// c.crickety.com writepost script
+//  crickety.com writepost script
 // 
 // CHNG-ALL-MRKD ::WEBSITE:: !
 ///////// VARS ::WEBSITE:: ////////////
@@ -6,9 +6,9 @@ var siteRoot = "https://www.crickety.com/";
 var siteUsrDir = "member/"; // with trailing slash!
 var siteName = "Crickety.com";
 var writepost_frmGood_dest = "https://www.crickety.com/";
-var writepostURL = "https://a.crickety.com/writepost/"; // if index.html then dir-trailslash must!
-var gRedirURL = 'https://a.crickety.com/signin/auth/';
-var staticDir = "/a_common/";
+var writepostURL = "https://www.crickety.com/common/a/writepost/"; // if index.html then dir-trailslash must!
+var gRedirURL = 'https://www.crickety.com/common/a/signin/auth/';
+var staticDir = "https://www.crickety.com/common/a/a_common/";
 var signinHTML = '<h1>Please Log-In...</h1>';
 var submitWarn = ''; /// msg before Submit btn
 var submitMsgOK = 'Thank you! Your post will now be submitted and should be published soon!';

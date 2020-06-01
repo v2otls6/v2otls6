@@ -2,7 +2,7 @@
 // all ::WEBSITE:: 2b chnged
 // 
 ///////// ::WEBSITE:: ////////
-var urlWritepost = "https://a.crickety.com/writepost/";
+var urlWritepost = "https://www.crickety.com/common/a/writepost/";
 var htmlWritepost = '<a style="height:34px;width:75vw;max-width:800px;text-transform: uppercase;letter-spacing: 2px;color:black;" href="' + urlWritepost + '" target="_top" class="writepost btn btn-warning" role="button"><b>Write a Post</b></a>';
 forumId = (typeof forumId === "undefined") ? 1 : forumId;
 ThsBlg_dsqs = "crickety";
