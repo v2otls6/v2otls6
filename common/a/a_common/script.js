@@ -351,10 +351,19 @@ function updateClick(user_id, user_from) {
 	};
 }
 
+function logOut() {
+	loadingBar();
+	localStorage.removeItem("userLoggedIn");
+	localStorage.removeItem("temp");
+	localStorage.removeItem("memberInfo");
+	localStorage.removeItem("writeapostbutton");
+	window.location.href = writepostURL;
+}
+
 function htmlUpdateProfile(user_from, user_id) {
 	var a = '' +
 		'<style>.panel {border-width:4px;}</style>' +
-		'<a role="button" class="btn btn-default" onclick="updateClick(\'' + user_id + '\',\'' + user_from + '\');return false;">Update Profile</a>' +
+		'<a role="button" class="btn btn-default" onclick="updateClick(\'' + user_id + '\',\'' + user_from + '\');return false;">Update Profile</a> <span class="pull-right"> <small><a href="#" onclick="logOut();return false;">Log-out <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></small> </span>' +
 		'<div id="updateProfile"></div>' +
 		'';
 	return a;

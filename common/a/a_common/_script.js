@@ -2,6 +2,7 @@
 // 
 // CHNG-ALL-MRKD ::WEBSITE:: !
 ///////// VARS ::WEBSITE:: ////////////
+var writepost_deftaultforumId = 1; // default forum if not off writeapostbutton
 var siteRoot = "https://www.crickety.com/";
 var siteUsrDir = "member/"; // with trailing slash!
 var siteName = "Crickety.com";
@@ -35,6 +36,36 @@ var frmElms = {
 ///////////// REST SAME IN ALL ///////////////
 // 
 ///////// FUNCS ///////////
+function attachForumInfo() {
+	// jq
+	if (localStorage.getItem("writeapostbutton") === null) {
+		$.ajax({
+			url: siteRoot + 'f1_p1.html', // not index.html because it may not be!
+			success: function(html) {
+				var jsCode = $(html).filter('#jsCode_forum_info').html();
+				jQuery.globalEval(jsCode);
+				// console.log(subForum);
+				localStorage.setItem('writeapostbutton',
+					JSON.stringify({
+						"forumId": writepost_deftaultforumId,
+						"forumTitle": subForum[writepost_deftaultforumId][0],
+						"forumDesc": subForum[writepost_deftaultforumId][1]
+					}));
+				insertForumInfo();
+			},
+			error: function(xhr, status, error) {}
+		});
+	} else {
+		insertForumInfo();
+	}
+
+	function insertForumInfo() {
+		var writeapostbutton = JSON.parse(localStorage.getItem("writeapostbutton"));
+		$('h1').before('<a href="' + siteRoot + 'f' + writeapostbutton.forumId + '_p1.html"><span class="label label-info"><i>Section</i>: ' + writeapostbutton.forumTitle + '</span></a>');
+		$('#entry_' + frmElms.post_forumId).attr('value', writeapostbutton.forumId);
+	}
+}
+
 function loadingBar() {
 	$('#content').prepend('<div id="loadingDoneBar"><hr/><div class="progress"> <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%"> </div> Working... </div> <hr/> </div>');
 }
@@ -448,7 +479,7 @@ $(document).ready(function() {
 					// 					memberInfo.user_gUserNickName + '</span>!<h3> <h1>Write a Post</h1>' +
 					htmlWritePost(post_id, post_time, post_gUserNickName, post_gUserEmail, post_gUserId, post_forumId, user_level, user_banned, user_from, user_aim, user_id) +
 					'');
-				////////////////////
+				//////////////////// ATTACH SCEDITOR ///////////////
 				var textarea = document.getElementById('entry_' + frmElms.post_text);
 				sceditor.create(textarea, {
 					emoticonsEnabled: false,
@@ -456,7 +487,11 @@ $(document).ready(function() {
 					format: 'xhtml',
 					style: 'https://cdnjs.cloudflare.com/ajax/libs/sceditor/2.1.3/themes/default.min.css'
 				});
-				//////////////////////
+				////////////////////// ADD FORUM INFO ////////////////////////
+				try {
+					attachForumInfo();
+				} catch (e) {};
+				///////////////////////////
 			} else {
 				window.location.href = gRedirURL;
 			}
