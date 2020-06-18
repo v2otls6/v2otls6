@@ -291,8 +291,10 @@ function htmlLogin() {
 		signinHTML +
 		// '<h3>Simple &amp; Easy One-Click Sign-In!<br/>  Use your existing account on</h3>' +
 		'<style>.signin img {width:100%;max-width:300px;margin:5px 0;}</style>' +
+		// generic
+		'<large><button id="signinbutton" onclick="gAuth_login();" class="btn btn-primary btn-lg signin">Log-in or Sign-up</button></large>' +
 		// go
-		'<a id="signinbutton" onclick="gAuth_login();" class="signin"><img alt="Sign In with Google" role="button" src="' + staticDir + 'go_si.png"  /></a>' +
+		// '<a id="signinbutton" onclick="gAuth_login();" class="signin"><img alt="Sign In with Google" role="button" src="' + staticDir + 'go_si.png"  /></a>' +
 		// fb
 		// '<br/>' +
 		// '<a id="signinbutton_2" onclick="fbAuth_login();" class="signin"><img alt="Sign In with Facebook" role="button" src="' + staticDir + 'fb_si.png"  /></a>' +
