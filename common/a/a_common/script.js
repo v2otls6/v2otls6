@@ -169,6 +169,7 @@ function gAuth_login() {
 			'access_token=' + params['access_token']);
 		xhr.onreadystatechange = function(e) {
 			if (xhr.readyState === 4 && xhr.status === 200) {
+				// console.log(xhr.response);
 				//// AUTH SUCCESS, store userinfo
 				// 
 				///// we're back to gRedirURL, hide signinbutton and display progress bar while subq fetches...
@@ -355,17 +356,30 @@ function updateClick(user_id, user_from) {
 
 function logOut() {
 	loadingBar();
-	localStorage.removeItem("userLoggedIn");
-	localStorage.removeItem("temp");
-	localStorage.removeItem("memberInfo");
-	localStorage.removeItem("writeapostbutton");
-	window.location.href = writepostURL;
+	try {
+		var params = JSON.parse(localStorage.getItem('oauth2-params'));
+		$.ajax({
+			method: "POST",
+			url: 'https://oauth2.googleapis.com/revoke?token=' + params['access_token'],
+			success: function(html) {
+				localStorage.clear();
+				window.location.href = writepostURL;
+			},
+			error: function(xhr, status, error) {
+				localStorage.clear();
+				window.location.href = writepostURL;
+			}
+		});
+	} catch (e) {
+		localStorage.clear();
+		window.location.href = writepostURL;
+	}
 }
 
 function htmlUpdateProfile(user_from, user_id) {
 	var a = '' +
 		'<style>.panel {border-width:4px;}</style>' +
-		'<a role="button" class="btn btn-default" onclick="updateClick(\'' + user_id + '\',\'' + user_from + '\');return false;">Update Profile</a> <span class="pull-right"> <small><a href="#" onclick="logOut();return false;">Log-out <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a></small> </span>' +
+		'<a role="button" class="btn btn-default" onclick="updateClick(\'' + user_id + '\',\'' + user_from + '\');return false;">Update Profile</a> <span class="pull-right">  <a href="#" onclick="logOut();return false;">Log-out <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a>  </span>' +
 		'<div id="updateProfile"></div>' +
 		'';
 	return a;
