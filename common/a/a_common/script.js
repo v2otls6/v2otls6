@@ -36,6 +36,16 @@ var frmElms = {
 ///////////// REST SAME IN ALL ///////////////
 // 
 ///////// FUNCS ///////////
+function attach_SCEDITOR(a) {
+	var textarea = document.getElementById('entry_' + a);
+	sceditor.create(textarea, {
+		emoticonsEnabled: false,
+		toolbar: 'bold,italic|bulletlist,orderedlist,quote|image,youtube|link,unlink|removeformat,maximize',
+		format: 'xhtml',
+		style: 'https://cdnjs.cloudflare.com/ajax/libs/sceditor/2.1.3/themes/default.min.css'
+	});
+}
+
 function attachForumInfo() {
 	// jq
 	if (localStorage.getItem("writeapostbutton") === null) {
@@ -61,13 +71,17 @@ function attachForumInfo() {
 
 	function insertForumInfo() {
 		var writeapostbutton = JSON.parse(localStorage.getItem("writeapostbutton"));
-		$('h1').before('<a href="' + siteRoot + 'f' + writeapostbutton.forumId + '_p1.html"><span class="label label-info"><i>Section</i>: ' + writeapostbutton.forumTitle + '</span></a>');
+		if ($("#insertForumInfo").length > 0) {} else {
+			$('h1').before('<span id="insertForumInfo"><a href="' + siteRoot + 'f' + writeapostbutton.forumId + '_p1.html"><span class="label label-info"><i>Section</i>: ' + writeapostbutton.forumTitle + '</span></a><span>');
+		}
 		$('#entry_' + frmElms.post_forumId).attr('value', writeapostbutton.forumId);
 	}
 }
 
 function loadingBar() {
-	$('#content').prepend('<div id="loadingDoneBar"><hr/><div class="progress"> <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%"> </div> Working... </div> <hr/> </div>');
+	if ($('#loadingDoneBar').length > 1) {} else {
+		$('#content').prepend('<div id="loadingDoneBar"><hr/><div class="progress"> <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%"> </div> Working... </div> <hr/> </div>');
+	}
 }
 
 function loadingDone() {
@@ -111,8 +125,14 @@ function writepost_frmValidate() {
 				document.getElementById('updateProfile_5').value.trim().replace(/\|/igm, "") +
 				'';
 		} catch (e) {}
+		/// push update-profile into user_from
 		document.getElementById('entry_' + frmElms.user_from).value = user_from;
+		/// push username
+		post_gUserNickName =
+			$('#updateProfile_new_post_gUserNickName').val().trim().replace(/\|/igm, "");
+		document.getElementById('entry_' + frmElms.post_gUserNickName).value = post_gUserNickName;
 		///  
+		// console.log($('#htmlWritePostForm')); ///// form action testing
 		loadingBar();
 		writepost_frmGood();
 	}
@@ -307,13 +327,15 @@ function htmlLogin() {
 		'';
 };
 
-function htmlUpdateForm(values) {
-	loadingDone();
+function htmlUpdateForm(values, user_name_existing) {
 	var a =
 		'<div style="display:none;" id="updateProfileFormContainer" class="panel panel-success">' +
 		'<div class="panel-heading"><h4>Info to be shown on your ' + siteName + ' profile page</h4></div>' +
 		'<div class="panel-body">' +
 		'<form onSubmit="document.getElementById(\'updateProfileFormContainer\').style=\'display:none\';return false;" id="updateProfileForm">' +
+		// NAMEINSERTUPDATE
+		'<label>Your Display Name</label><input class="form-control" id="updateProfile_new_post_gUserNickName" value="' + user_name_existing + '" type="text"/>' +
+		// 
 		// user_from +
 		'<label>Your city, country</label><input class="form-control" id="updateProfile_0" value="' + (values[0] || "") + '" type="text"/>' +
 		'<label>Your occupation</label><input class="form-control" id="updateProfile_1" value="' + (values[1] || "") + '" type="text"/>' +
@@ -329,29 +351,40 @@ function htmlUpdateForm(values) {
 		'</div>' +
 		'</div>' +
 		'';
-	$("#updateProfile").html(a);
-	document.getElementById('updateProfileFormContainer').style = 'display:block';
+	return a;
+	// $("#updateProfile").html(a);
+	// document.getElementById('updateProfileFormContainer').style = 'display:block';
 }
 
-function updateClick(user_id, user_from) {
-	var b = "";
-	//// EXSTNG USER, GET USRDATA FRM THR PG 
-	if (user_id.match(/[0-9]+/)) {
-		loadingBar();
-		$.ajax({
-			url: siteRoot + siteUsrDir + user_id.trim() + '.html',
-			success: function(html) {
-				var user_from_existing = $(html).filter('[data-usrinf]').attr('data-usrinf'); //// FROM <meta data-usrinf=""/>
-				var values = user_from_existing.split('|');
-				htmlUpdateForm(values);
-			},
-			error: function(xhr, status, error) {
-				//// GET FRM USERS SNC AJAX FAILED... IF ANY THERE
-				var values = user_from.split('|');
-				htmlUpdateForm(values);
-			}
-		});
-	};
+function finalElements(memberInfo_newUser, user_aim, post_id, post_time, post_gUserEmail, post_gUserId, post_forumId, user_level, user_banned, user_from, user_id) {
+	var user_from_existing = localStorage.getItem('user_from_existing');
+	var user_name_existing = localStorage.getItem('user_name_existing');
+	var user_from_values = user_from_existing.split('|');
+	$('#writepost').html('' +
+		// 
+		htmlUpdateProfile(user_from, user_id, user_name_existing) +
+		// 
+		htmlUpdateForm(user_from_values, user_name_existing) +
+		// 
+		htmlGreeter(
+			memberInfo_newUser,
+			siteName,
+			user_aim,
+			user_name_existing
+		) +
+		// 
+		htmlWritePost(post_id, post_time, user_name_existing, post_gUserEmail, post_gUserId, post_forumId, user_level, user_banned, user_from, user_aim, user_id) +
+		'');
+	attach_SCEDITOR(frmElms.post_text);
+	////////////////////// ADD FORUM INFO ////////////////////////
+	try {
+		attachForumInfo();
+	} catch (e) {};
+	loadingDone();
+}
+
+function updateClick(user_id, user_from, user_gUserNickName) {
+	document.getElementById('updateProfileFormContainer').style = 'display:block';
 }
 
 function logOut() {
@@ -376,10 +409,10 @@ function logOut() {
 	}
 }
 
-function htmlUpdateProfile(user_from, user_id) {
+function htmlUpdateProfile(user_from, user_id, user_gUserNickName) {
 	var a = '' +
 		'<style>.panel {border-width:4px;}</style>' +
-		'<a role="button" class="btn btn-default" onclick="updateClick(\'' + user_id + '\',\'' + user_from + '\');return false;">Update Profile</a> <span class="pull-right">  <a href="#" onclick="logOut();return false;">Log-out <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a>  </span>' +
+		'<a role="button" class="btn btn-default" onclick="updateClick(\'' + user_id + '\',\'' + user_from + '\',\'' + user_gUserNickName + '\');return false;">Update Profile</a> <span class="pull-right">  <a href="#" onclick="logOut();return false;">Log-out <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a>  </span>' +
 		'<div id="updateProfile"></div>' +
 		'';
 	return a;
@@ -390,8 +423,8 @@ function htmlGreeter(newUser, siteName, user_aim, user_gUserNickName) {
 		'<h3>Welcome  ' +
 		(newUser == "yes" ? ' to ' + siteName + ', ' : 'back, ') + ///// 
 		'<span>' +
-		(user_aim.match(/http/) ? '<img style="height:1em;display:inline-block;vertical-align:middle;" src="' + user_aim + '"/> ' : '') +
-		user_gUserNickName + '</span>!</h3>' +
+		(user_aim.match(/http/) ? '<!-- <img style="height:1em;display:inline-block;vertical-align:middle;" src="' + user_aim + '"/> --> ' : '') +
+		'<span id="greetUser">' + user_gUserNickName + '</span></span>!</h3>' +
 		' <h1>Write a Post</h1>' +
 		'';
 	return a;
@@ -400,7 +433,10 @@ function htmlGreeter(newUser, siteName, user_aim, user_gUserNickName) {
 function htmlWritePost(post_id, post_time, post_gUserNickName, post_gUserEmail, post_gUserId, post_forumId, user_level, user_banned, user_from, user_aim, user_id) {
 	var a = '' +
 		'<iframe name="OUR_hidden_iframe" id="OUR_hidden_iframe" style="display:none;" onload=""></iframe>' +
-		'<form onSubmit="return writepost_frmValidate()" action="' + doGoAdd + '" name="unique_frm_name" id="htmlWritePostForm" target="OUR_hidden_iframe">' +
+		'<form onSubmit="return writepost_frmValidate()" action="' +
+		// 'javascript:console.log(this)' + // 4 testing (does nothing)
+		doGoAdd + //// reg destination (gd)
+		'" name="unique_frm_name" id="htmlWritePostForm" target="OUR_hidden_iframe">' +
 		'<!-- VISIBLE -->' +
 		'<div class="form-group">' +
 		'<label>Title</label>' +
@@ -435,13 +471,19 @@ function htmlWritePost(post_id, post_time, post_gUserNickName, post_gUserEmail, 
 		'';
 	return a;
 };
+// 
+// 
+// 
 /////
 ///////// /FUNCS ///////////
 /////
 ////////////////////////////////////
 ///////////////// EXEC /////////////
 ////////////////////////////////////
-/////
+$('<style type="text/css">/* appended via script.js */  #mastwrap {margin-bottom:15px; }</style>').appendTo($('head'));
+////////////////////////////////////
+///////////////// EXEC /////////////
+////////////////////////////////////
 ////////// JQ EXEC //////////
 /////
 $(document).ready(function() {
@@ -457,6 +499,7 @@ $(document).ready(function() {
 	}
 	if (ThsBlg_pg == 'writepost') {
 		///// show write form if Member else take to auth page
+		loadingBar();
 		try {
 			if (localStorage.getItem('userLoggedIn') && localStorage.getItem('memberInfo')) {
 				var userLoggedIn = JSON.parse(localStorage.getItem('userLoggedIn'));
@@ -483,40 +526,61 @@ $(document).ready(function() {
 				var user_banned = memberInfo.user_banned;
 				var user_from = memberInfo.user_from || "";
 				var user_aim = memberInfo.user_aim || "";
-				var user_from = memberInfo.user_from || "";
 				var user_id = memberInfo.user_id || "";
-				// console.log(post_id + ' ' + post_time + ' ' + post_gUserNickName, post_gUserEmail + ' ' + post_gUserId + ' ' + post_forumId, user_level + ' ' + user_banned + ' ' + user_from + ' ' + user_aim)
-				$('#writepost').html('' +
-					// htmlLogin() +
-					htmlUpdateProfile(user_from, user_id) +
-					htmlGreeter(
-						memberInfo.newUser,
-						siteName,
-						user_aim,
-						memberInfo.user_gUserNickName
-					) +
-					// 					'<h3>Welcome  ' +
-					// 					(memberInfo.newUser == "yes" ? ' to ' + siteName + ', ' : 'back, ') + 
-					// 					'<span>' +
-					// 					(memberInfo.user_aim.match(/http/) ? '<img style="height:1em;display:inline-block;vertical-align:middle;" src="' + memberInfo.user_aim + '"/> ' : '') +
-					// memberInfo.user_from
-					// 					+
-					// 					memberInfo.user_gUserNickName + '</span>!<h3> <h1>Write a Post</h1>' +
-					htmlWritePost(post_id, post_time, post_gUserNickName, post_gUserEmail, post_gUserId, post_forumId, user_level, user_banned, user_from, user_aim, user_id) +
-					'');
-				//////////////////// ATTACH SCEDITOR ///////////////
-				var textarea = document.getElementById('entry_' + frmElms.post_text);
-				sceditor.create(textarea, {
-					emoticonsEnabled: false,
-					toolbar: 'bold,italic|bulletlist,orderedlist,quote|image,youtube|link,unlink|removeformat,maximize',
-					format: 'xhtml',
-					style: 'https://cdnjs.cloudflare.com/ajax/libs/sceditor/2.1.3/themes/default.min.css'
+				// 
+				// 
+				/**
+				 *
+				 *
+				 *
+				 *
+				 *
+				 */
+				// 
+				// fallbacks before attempting ajax profile page fetch
+				//
+				localStorage.setItem('user_from_existing', user_from);
+				localStorage.setItem('user_name_existing', post_gUserNickName);
+				// 
+				$.ajax({
+					url: siteRoot + siteUsrDir + user_id + '.html',
+					success: function(html) {
+						try {
+							var user_from_existing = $(html).filter('[data-usrinf]').attr('data-usrinf'); //// FROM <meta data-usrinf=""/>
+							var user_name_existing = $(html).find("h1").text().trim(); //// get name
+							localStorage.setItem('user_from_existing', user_from_existing);
+							localStorage.setItem('user_name_existing', user_name_existing);
+							//////////
+							/////////////// SAME CHUNK 1/3
+							//////////
+							finalElements(memberInfo.newUser, user_aim, post_id, post_time, post_gUserEmail, post_gUserId, post_forumId, user_level, user_banned, user_from, user_id);
+							////////////
+							////////////
+							// 
+						} catch (e) {}
+						//////////
+						/////////////// SAME CHUNK 2/3
+						//////////
+						finalElements(memberInfo.newUser, user_aim, post_id, post_time, post_gUserEmail, post_gUserId, post_forumId, user_level, user_banned, user_from, user_id);
+						////////////
+						////////////
+					},
+					error: function(xhr, status, error) {
+						//////////
+						/////////////// SAME CHUNK 3/3
+						//////////
+						finalElements(memberInfo.newUser, user_aim, post_id, post_time, post_gUserEmail, post_gUserId, post_forumId, user_level, user_banned, user_from, user_id);
+						////////////
+						////////////
+					}
 				});
-				////////////////////// ADD FORUM INFO ////////////////////////
-				try {
-					attachForumInfo();
-				} catch (e) {};
-				///////////////////////////
+				/**
+				 *
+				 *
+				 *
+				 *
+				 *
+				 */
 			} else {
 				window.location.href = gRedirURL;
 			}
