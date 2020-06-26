@@ -2,9 +2,10 @@
 // all ::WEBSITE:: 2b chnged
 // 
 ///////// ::WEBSITE:: ////////
+var forumTerm = "Forums"; /// ie All "Forums" in menu.
 var urlWritepost = "https://www.crickety.com/common/a/writepost/";
-var htmlWritepost = '<a id="writeapostbutton" onclick="writeapostbutton();return false;" ' + //// id, onclick must same on all
-	' style="height:34px;width:75vw;max-width:800px;text-transform: uppercase;letter-spacing: 2px;color:black;" href="' + urlWritepost + '" target="_top" class="writepost btn btn-warning" role="button"><b>Write a Post</b></a>';
+var htmlWritepost = '<div class="pull-right"><a id="writeapostbutton" onclick="writeapostbutton();return false;" ' + //// id, onclick must same on all
+	' style="height:34px;text-transform: uppercase;letter-spacing: 2px;" href="' + urlWritepost + '" target="_top" class="writepost btn btn-primary" role="button"> &nbsp; <img style="filter: invert(1);" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGZQTFRFAAAAra2trq6uBQUFp6entLS0BwcHt7e3r6+vtra2vb29BgYGu7u7xMTExsbGDAwMz8/Pzc3NCgoKzs7OsbGxwsLCCQkJurq6srKysLCwvr6+cnJyDQ0NFBQUioqKvLy8s7Oz////x4rOFwAAACJ0Uk5T////////////////////////////////////////////AA3Qw3EAAAC9SURBVHja1JDZDsIwDASdlhZKue8b9v9/kk1IlFI3Ea9YaqbSjh0rglQZGVlIOhdnCKRXMXeGyKBQ8ufKzyQE21+itjPi0N79hnx83RrLzi/IO3kZEIzPV+QUWgj51uVa+OwHrMkNtBD6F+QTWgj73cgZtFD5+XPyAC1Uvn9PVtBC7fMl+YIWQv+RPPmsKxT+fcdkgwHB72fzFgmBZ0PskBbsnmckBVct8sIEeaGT9wVd/yVk6hcB+RxvAQYAbpZMDO0G2+4AAAAASUVORK5CYII=" height="14" width="14"/> &nbsp;<b>Write a Post</b> &nbsp; </a></div>';
 forumId = (typeof forumId === "undefined") ? 1 : forumId;
 ThsBlg_dsqs = "crickety";
 // 
@@ -128,7 +129,7 @@ function forumMenu() {
 	return '' +
 		'<ul class="nav nav-tabs">' +
 		'<li role="presentation"><a href="' + thsForumRootPath + '"> Home </a></li>' +
-		'<li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">All Forums<span class="caret"></span></a><ul class="dropdown-menu" role="menu">' + a + '</ul></li>' +
+		'<li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">All ' + forumTerm + '<span class="caret"></span></a><ul class="dropdown-menu" role="menu">' + a + '</ul></li>' +
 		'<li role="presentation"><a href="#">' + subForum[forumId][0] + ' </a></li>' +
 		'</ul>';
 }

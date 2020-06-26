@@ -3,7 +3,8 @@
 // 
 ///////// ::WEBSITE:: ////////
 var urlWritepost = "https://www.crickety.com/common/a/writepost/";
-var htmlWritepost = '<a style="height:34px;width:75vw;max-width:800px;text-transform: uppercase;letter-spacing: 2px;color:black;" href="' + urlWritepost + '" target="_top" class="writepost btn btn-warning" role="button"><b>Write a Post</b></a>';
+var htmlWritepost = '<a id="writeapostbutton" onclick="writeapostbutton();return false;" ' + //// id, onclick must same on all
+	' style="height:34px;width:75vw;max-width:800px;text-transform: uppercase;letter-spacing: 2px;color:black;" href="' + urlWritepost + '" target="_top" class="writepost btn btn-warning" role="button"><b>Write a Post</b></a>';
 forumId = (typeof forumId === "undefined") ? 1 : forumId;
 ThsBlg_dsqs = "crickety";
 // 
@@ -28,6 +29,27 @@ winHeight = Math.max(document.documentElement.clientHeight, window.innerHeight |
 // -------------------------------------
 // ---- FUNC ----
 // -------------------------------------
+function writeapostbutton() {
+	// forumId = 99;
+	var forumTitle, forumDesc;
+	try {
+		forumTitle = subForum[forumId][0];
+		forumDesc = subForum[forumId][1];
+	} catch (e) {
+		forumTitle = "";
+		forumDesc = "";
+	}
+	localStorage.setItem('writeapostbutton',
+		JSON.stringify({
+			"forumId": forumId,
+			"forumTitle": forumTitle,
+			"forumDesc": forumDesc
+		}));
+	window.location.href = urlWritepost;
+	// console.log(JSON.parse(localStorage.getItem("writeapostbutton")));
+	return false;
+}
+
 function viewport(percentage, property) {
 	// v1 - returns viewport % in pixels
 	// property='vw','vh', usage: viewport(40, "vh")+'px';
@@ -431,6 +453,7 @@ $(document).ready(function() {
 		'<div style="width:90%;margin:0 auto">' +
 		'<table style="width:100%"><tr>' +
 		'<td>' + htmlWritepost + '</td>  ' +
+		'<td style="width:200px">  <div id="twBtn" style="width:100%;height:34px;float:right;"> </div> </td>' +
 		'</tr></table>' +
 		'</div>' +
 		'<div class="clearer"></div>' +
