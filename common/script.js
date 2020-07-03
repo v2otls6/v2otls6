@@ -2,6 +2,7 @@
 // all ::WEBSITE:: 2b chnged
 // 
 ///////// ::WEBSITE:: ////////
+var postsToHide = []; //// [2,3] or [] of *raw* post_id nums, to display:none-in mainpages 
 var forumTerm = "Forums"; /// ie All "Forums" in menu.
 var urlWritepost = "https://www.crickety.com/common/a/writepost/";
 var htmlWritepost = '<div class="pull-right"><a id="writeapostbutton" onclick="writeapostbutton();return false;" ' + //// id, onclick must same on all
@@ -127,10 +128,11 @@ function forumMenu() {
 		}
 	}
 	return '' +
-		'<ul class="nav nav-tabs">' +
-		'<li role="presentation"><a href="' + thsForumRootPath + '"> Home </a></li>' +
-		'<li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">All ' + forumTerm + '<span class="caret"></span></a><ul class="dropdown-menu" role="menu">' + a + '</ul></li>' +
-		'<li role="presentation"><a href="#">' + subForum[forumId][0] + ' </a></li>' +
+		'<style>#formMenuTab .pntr{display: inline-block; margin-left: 0 0 0 5px;color:black}</style>' +
+		'<ul class="nav nav-tabs" id="formMenuTab">' +
+		'<li role="presentation"><a href="' + thsForumRootPath + '"> Home <span class="pntr">&gt;</span> </a></li>' +
+		'<li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">All ' + forumTerm + '<span class="caret"></span> </a><ul class="dropdown-menu" role="menu">' + a + '</ul></li>' +
+		'<li role="presentation"><a href="' + (forumId == 0 ? 'index' : 'f' + forumId + '_p1') + '.html"> <span class="pntr" style="font-weight:bold;margin-left: 5px 0 0;">&gt;</span> ' + subForum[forumId][0] + ' </a></li>' +
 		'</ul>';
 }
 
@@ -343,6 +345,11 @@ function mainpage() {
 	$("#prevlink a").wrap("<li></li>");
 	$("#prevlink li").wrapAll('<ul class="pagination"></ul>');
 	// todo fix Author
+	////// HIDE/DISPLAYNONE POSTS (IF ANY)...
+	try {
+		var a = postsToHide.map(i => '#p_' + i).join(",");
+		$(a).css('display', 'none');
+	} catch (e) {}
 } // MAINPAGE
 // 
 // 
