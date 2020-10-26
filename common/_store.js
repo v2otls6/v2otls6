@@ -25,10 +25,6 @@ thsBlg_amz = {
 	'def_node': '', //'9003130011',
 	'def_node_2': '', //'9003130011',
 };
-thsBlg_as = '\x63' + 'a' + '-\x70\x75b-' + (1378457127949688 + 1885838044407214 + 2425907941002819);
-var ad_Id_resp = '9985523445';
-var ad_Id_fixed = '1676030482';
-var lu_Id_resp = '4187445049';
 thsBlg_epn = "5337904756";
 thsBlg_dyn_catcher = "www.crickety.com/common/c/";
 ThsBlg_aT_cd = 'crickety';
@@ -296,14 +292,6 @@ function insertAfterHTMLByClass(divClass, html) {
 	}
 }
 
-function insertAfterHTML(divId, html) {
-	if (!document.getElementById(divId)) {
-		// 
-	} else {
-		document.getElementById(divId).insertAdjacentHTML("afterend", html);
-	}
-}
-
 function toTitleCase(str) {
 	return str.replace(/\w\S*/g, function(txt) {
 		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
@@ -311,9 +299,6 @@ function toTitleCase(str) {
 }
 ///// MODDED FOR AS_CD
 function asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWidth, divHeight) {
-	if (bnndQry == "yes") {
-		return;
-	}
 	// v10 - bugfix
 	if (!document.getElementById(divId)) {
 		// 
@@ -351,10 +336,10 @@ function asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWid
 				'.adslot_' + idTxt + ' { width: ' + divWidth + '; height:' + divHeight + '; }' +
 				'</style>' +
 				prefix +
-				'<span class="ldng_16_3x" style="display:block;max-width:' + divWidth + ';max-height:' + divHeight + '">' +
+				'<span  class="ldng_16_3x"  style="display:block;max-width:' + divWidth + ';max-height:' + divHeight + '">' +
 				' <ins class="adsbygoogle adslot_' + idTxt + '" ' +
 				' style="display:block" ' +
-				' data-ad-client="' + thsBlg_as + '" ' +
+				' data-ad-client="' + '\x63' + 'a' + '-\x70\x75b-' + (1378457127949688 + 1885838044407214 + 2425907941002819) + '" ' +
 				' data-ad-slot="' + slot + '" ' +
 				' data-ad-format="' + a + '"></ins> ' +
 				'</span>' +
@@ -368,28 +353,6 @@ function asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWid
 		} catch (e) {
 			return true;
 		}
-	}
-}
-
-function asadFixId(prefix, postfix, divId, width, height, slot, channel) {
-	//v3 (span not div)
-	if (!document.getElementById(divId)) {
-		// 
-	} else {
-		document.getElementById(divId).innerHTML = '' +
-			prefix +
-			' <ins class="adsbygoogle" ' +
-			' style="display:inline-block;' +
-			' width:' + width + 'px;' +
-			' height:' + height + 'px" ' +
-			' data-ad-client="' + thsBlg_as + '" ' +
-			' data-ad-slot="' + slot + '"></ins>' +
-			postfix;
-		(adsbygoogle = window.adsbygoogle || []).push({
-				params: {
-					google_ad_channel: channel
-				}
-			});
 	}
 }
 
@@ -1071,6 +1034,8 @@ function itempage() {
 // 
 if (thsSiteTyp == "www") {
 	//  cric resp ad: 9985523445, resp lu: 4187445049
+	var ad_Id_resp = '9985523445';
+	var lu_Id_resp = '4187445049';
 	//// WWW CHANNELS
 	var ad_Channel = (ThsBlg_pg == 'mainpage') ? '8967036449' : '7599678350';
 	var lu_Channel = (ThsBlg_pg == 'mainpage') ? '7073906664' : '8653795477';
@@ -1215,6 +1180,8 @@ if (thsSiteTyp == "store") {
 	// --- AS
 	//  cric resp ad: 9985523445, resp lu: 4187445049
 	//// STORE BOTH MAINPAGE+ITEMPAGE BOTH DTP+MOB
+	var ad_Id_resp = '9985523445';
+	var lu_Id_resp = '4187445049';
 	//// STORE CHANNELS
 	var ad_Channel = (ThsBlg_pg == 'mainpage') ? '7699504246' : '7699504246';
 	var lu_Channel = (ThsBlg_pg == 'mainpage') ? '1712053793' : '1712053793';
@@ -1235,17 +1202,6 @@ if (thsSiteTyp == "store") {
 		insertAfterHTMLByClass('postbody', sideBysideLU);
 	}
 	if (ThsBlg_pg == 'itempage') {
-		/////////// FIXED ON BOTH MOB+DTP 
-		insertAfterHTML('cse_container', '<div id="as_itmpgTop" style="width:300px;height:90px;margin:0 auto;"></div>');
-		asadFixId(
-			'',
-			'',
-			"as_itmpgTop",
-			"300",
-			"90",
-			ad_Id_fixed,
-			ad_Channel
-		);
 		insertBeforeHTMLByClass('blogger-labels', sideBysideLU);
 	}
 	asadRespId(
