@@ -131,7 +131,7 @@ function forumMenu() {
 		'<style>#formMenuTab .pntr{display: inline-block; margin-left: 0 0 0 5px;color:black}</style>' +
 		'<ul class="nav nav-tabs" id="formMenuTab">' +
 		'<li role="presentation"><a href="' + thsForumRootPath + '"> Home <span class="pntr">&gt;</span> </a></li>' +
-		'<li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">All ' + forumTerm + '<span class="caret"></span> </a><ul class="dropdown-menu" role="menu">' + a + '</ul></li>' +
+		'<li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">All ' + forumTerm + '<span class="caret"></span> </a><ul class="dropdown-menu" role="menu" id="formMenuTab_menuitems">' + a + '</ul></li>' +
 		'<li role="presentation"><a href="' + (forumId == 0 ? 'index' : 'f' + forumId + '_p1') + '.html"> <span class="pntr" style="font-weight:bold;margin-left: 5px 0 0;">&gt;</span> ' + subForum[forumId][0] + ' </a></li>' +
 		'</ul>';
 }
@@ -475,6 +475,20 @@ $(document).ready(function() {
 	if (ThsBlg_pg == "userpage") {
 		userpage();
 	}
+	///// remove all specified in these_not_in_menu, or remove all specified in these_not_in_menu
+	try {
+		$('#formMenuTab_menuitems li').each(function(index) {
+			if (these_last_in_menu.includes(index)) {
+				$(this).appendTo('#formMenuTab_menuitems');
+			}
+			if (these_not_in_menu.includes(index)) {
+				$(this).remove();
+				// 
+			}
+		});
+	} catch (e) {}
+	////////////
+	// 
 	// ---- LAST EXEC ALL ----
 	$('.container').prepend('<div style="padding:10px 0"><div id="cseForm"></div><div id="cseResults"></div></div>');
 	// gCSE('cseResults', 'cseForm', ThsBlg_cse);
