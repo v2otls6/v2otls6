@@ -224,6 +224,8 @@ function gAuth_login() {
 					} else {
 						/// all-faild-mk-emailid-the-name-or-Anonymous
 						name = email.match(/^([^@]*)@/)[1];
+						/// rmv jnk chrs
+						name = name.replace(/[^A-Za-z\s\-]/igm, " ").replace(/\s+/igm, " ").trim()
 					}
 				}
 				//////// /v2 algo /////////
