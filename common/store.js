@@ -926,8 +926,6 @@ function epnSrchURL(campId, srchQry) {
 	return 'https://www.ebay.com/sch/i.html?_ex_kw=&_mPrRngCbx=1&_nkw=' + a + '&mkcid=1&mkrid=711-53200-19255-0&siteid=0&campid=' + campId + '&customid=&toolid=10001&mkevt=1';
 }
 
-
-
 function aead(divId, aid, akey, asize) {
 	// v3
 	// aid,akey,asize from ae code
@@ -1228,44 +1226,42 @@ if (thsSiteTyp == "store") {
 	var ad_Channel = (ThsBlg_pg == 'mainpage') ? '7699504246' : '7699504246';
 	var lu_Channel = (ThsBlg_pg == 'mainpage') ? '1712053793' : '1712053793';
 	//// STORE BOTH MAINPAGE+ITEMPAGE LINKU ON DTP SIDEBAR
-	var a = !detectmob() ? prependHTML('leftbar', '<div style="max-width:300px ; max-height:600px; min-height:100px; margin-bottom:10px;"><div id="as_sb1"></div></div>') : '';
-	asadRespId(
-		'<div style="text-align:center;width:90%;">',
-		'</div>',
-		"as_sb1",
-		"xyz_as_lb1",
-		lu_Id_resp,
-		lu_Channel,
-		"link"
+	var a = !detectmob() ? prependHTML('leftbar', '<div id="asSideBar"></div>') : '';
+	asadFixId(
+		'',
+		'',
+		"asSideBar",
+		"160",
+		"600",
+		ad_Id_fixed,
+		ad_Channel
 	);
-	//// STORE BOTH MAINPAGE+ITEMPAGE LINKU ON MOB
-	var sideBysideLU = detectmob() ? '<hr/><div style="margin:10px auto 20px"> <div class="row"><div class="col-sm-9"> <div id="as_lb1"></div> </div> <div class="col-sm-3"> <div id="as_lb2"></div> </div> </div> </div><hr/>' : '';
-	if (ThsBlg_pg == 'mainpage') {
-		insertAfterHTMLByClass('postbody', sideBysideLU);
-	}
-	if (ThsBlg_pg == 'itempage') {
-		/////////// FIXED ON BOTH MOB+DTP 
-		insertAfterHTML('cse_container', '<div id="as_itmpgTop" style="width:300px;height:90px;margin:0 auto;"></div>');
-		asadFixId(
-			'',
-			'',
-			"as_itmpgTop",
-			"300",
-			"90",
-			ad_Id_fixed,
-			ad_Channel
-		);
-		insertBeforeHTMLByClass('blogger-labels', sideBysideLU);
-	}
-	asadRespId(
-		'<div style="text-align:center;width:90%;">',
-		'</div>',
-		"as_lb1",
-		"xyz_as_lb1",
-		lu_Id_resp,
-		lu_Channel,
-		"link"
+	//// STORE BOTH MAINPAGE+ITEMPAGE
+	var asOnTop = detectmob() ? '<div id="asOnTop"></div>' : '';
+	var asOnBottom = '<hr/><div id="asOnBottom"></div><hr/>';
+	insertAfterHTML('cse_container', asOnTop);
+	//// ad on mob only
+	asadFixId(
+		'',
+		'',
+		"asOnTop",
+		'300',
+		'50',
+		ad_Id_fixed,
+		ad_Channel
 	);
+	//// ad mob+dtp
+	insertBeforeHTMLByClass('blogger-labels', asOnBottom);
+	asadRespId(
+		'',
+		'',
+		"asOnBottom",
+		"xyz_asOnBottom",
+		ad_Id_resp,
+		ad_Channel,
+		'a'
+	);
+	//////////////////
 	// 
 	////////
 	function amazonCleanUrl(strURL, strTLD, strAffId) {
