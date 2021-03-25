@@ -9,6 +9,7 @@
 // -------------------------------------
 // ---- GLOBAL VARS ----
 // -------------------------------------
+//// must be identical in both /common/store.js and /common/script.js
 thsBlg_amz = {
 	// no empties!
 	'com': 'crickety-20',
@@ -51,34 +52,10 @@ if (typeof thsSiteTyp == 'undefined') {
 	thsSiteTyp = "www";
 }
 // 
-if (typeof bnndQry === 'undefined') {
-	bnndQry = 'no';
-}
+/// ======= bnndQry v2 ==========
+/// in html!
+/// ======= /bnndQry ==========
 // 
-// 
-//// ----------<pagelevelIfNotHardcoded>---------- //
-//// v2
-function pagelevelIfNotHardcoded() {}
-
-function _pagelevelIfNotHardcoded() {
-	try {
-		var plTag = document.getElementsByTagName("head")[0].getElementsByTagName("script") || 0;
-		for (var i = 0; i < plTag.length; i++) {
-			if (plTag[i].textContent.match(/enable_page_level_ads/im)) {
-				return;
-			}
-		}
-		(adsbygoogle = window.adsbygoogle || []).push({
-			google_ad_client: thsBlg_as,
-			enable_page_level_ads: true
-		});
-	} catch (e) {}
-}
-if (bnndQry != "yes") { //////////// if bnndQry  ///////////
-	// pagelevelIfNotHardcoded();
-}
-////
-//// ----------</pagelevelIfNotHardcoded>---------- //
 // -------------------------------------
 // ---- /GLOBAL VARS ----
 // -------------------------------------
@@ -315,15 +292,18 @@ function toTitleCase(str) {
 		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
 	});
 }
-///// MODDED FOR AS_CD
+
 function asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWidth, divHeight) {
 	if (bnndQry == "yes") {
 		return;
 	}
-	// v10 - bugfix
+	// v11 - adFormat var
 	if (!document.getElementById(divId)) {
 		// 
 	} else {
+		if (typeof orient === 'undefined' || orient == "") {
+			var orient = "";
+		}
 		var a = "";
 		if (orient == "link") {
 			a = "link"
@@ -349,21 +329,19 @@ function asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWid
 		if (orient == "rv") {
 			a = "rectangle, vertical"
 		};
-		var divWidth = typeof divWidth !== 'undefined' ? divWidth : '100%';
-		var divHeight = typeof divHeight !== 'undefined' ? divHeight : '100%';
+		var adFormat = (a == "") ? '' : 'data-ad-format="' + a + '"';
+		var divWidth = typeof divWidth !== 'undefined' ? 'width:' + divWidth + ';' : '';
+		var divHeight = typeof divHeight !== 'undefined' ? 'height:' + divHeight + ';' : '';
 		try {
 			document.getElementById(divId).innerHTML = '' +
 				'<style type="text/css">' +
-				'.adslot_' + idTxt + ' { width: ' + divWidth + '; height:' + divHeight + '; }' +
+				'.adslot_' + idTxt + ' { ' + divWidth + ' ' + divHeight + ' }' +
 				'</style>' +
 				prefix +
-				'<span class="ldng_16_3x" style="display:block;max-width:' + divWidth + ';max-height:' + divHeight + '">' +
 				' <ins class="adsbygoogle adslot_' + idTxt + '" ' +
-				' style="display:block" ' +
 				' data-ad-client="' + thsBlg_as + '" ' +
 				' data-ad-slot="' + slot + '" ' +
-				' data-ad-format="' + a + '"></ins> ' +
-				'</span>' +
+				' ' + adFormat + ' ></ins> ' +
 				postfix +
 				'';
 			(adsbygoogle = window.adsbygoogle || []).push({
@@ -377,8 +355,13 @@ function asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWid
 	}
 }
 
+
+
 function asadFixId(prefix, postfix, divId, width, height, slot, channel) {
 	//v3 (span not div)
+	if (bnndQry == "yes") {
+		return;
+	}
 	if (!document.getElementById(divId)) {
 		// 
 	} else {
@@ -1225,33 +1208,36 @@ if (thsSiteTyp == "store") {
 	//// STORE CHANNELS
 	var ad_Channel = (ThsBlg_pg == 'mainpage') ? '7699504246' : '7699504246';
 	var lu_Channel = (ThsBlg_pg == 'mainpage') ? '1712053793' : '1712053793';
-	//// STORE BOTH MAINPAGE+ITEMPAGE LINKU ON DTP SIDEBAR
+	//// STORE BOTH MAINPAGE+ITEMPAGE AD ON DTP SIDEBAR
 	var a = !detectmob() ? prependHTML('leftbar', '<div id="asSideBar"></div>') : '';
-	asadFixId(
+	asadRespId(
+		'', // prefix
+		'', // postfix
+		"asSideBar", // div id
+		"xyz_asSideBar", // xyz_ + div id
+		ad_Id_resp, // slot
+		ad_Channel, // channel
 		'',
-		'',
-		"asSideBar",
-		"160",
-		"600",
-		ad_Id_fixed,
-		ad_Channel
+		'160px',
+		'600px'
 	);
 	//// STORE BOTH MAINPAGE+ITEMPAGE
 	var asOnTop = detectmob() ? '<div id="asOnTop"></div>' : '';
 	var asOnBottom = '<hr/><div id="asOnBottom"></div><hr/>';
+	insertBeforeHTMLByClass('blogger-labels', asOnBottom);
 	insertAfterHTML('cse_container', asOnTop);
-	//// ad on mob only
-	asadFixId(
-		'',
-		'',
-		"asOnTop",
-		'300',
-		'50',
-		ad_Id_fixed,
-		ad_Channel
+	asadRespId(
+		'', // prefix
+		'', // postfix
+		"asOnTop", // div id
+		"xyz_asOnTop", // xyz_ + div id
+		ad_Id_resp, // slot
+		ad_Channel, // channel
+		'', // orient OR ""
+		"320px", // optional width eg "320px"
+		"50px" // optional height eg "50px" (must if width)
 	);
 	//// ad mob+dtp
-	insertBeforeHTMLByClass('blogger-labels', asOnBottom);
 	asadRespId(
 		'',
 		'',
@@ -1259,9 +1245,14 @@ if (thsSiteTyp == "store") {
 		"xyz_asOnBottom",
 		ad_Id_resp,
 		ad_Channel,
-		'a'
+		'',
+		'336px',
+		'280px'
 	);
+	// 
 	//////////////////
+
+
 	// 
 	////////
 	function amazonCleanUrl(strURL, strTLD, strAffId) {
