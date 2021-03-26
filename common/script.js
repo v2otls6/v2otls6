@@ -18,15 +18,18 @@ var ad_Id_resp = '9985523445';
 var ad_Id_fixed = '1676030482';
 var ad_Channel = (ThsBlg_pg == 'mainpage') ? '8967036449' : '7599678350';
 bnndQry = "no";
-
+///////// FUNCS ///////////
 function asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWidth, divHeight) {
 	if (bnndQry == "yes") {
 		return;
 	}
-	// v10 - bugfix
+	// v11 - adFormat var
 	if (!document.getElementById(divId)) {
 		// 
 	} else {
+		if (typeof orient === 'undefined' || orient == "") {
+			var orient = "";
+		}
 		var a = "";
 		if (orient == "link") {
 			a = "link"
@@ -52,21 +55,19 @@ function asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWid
 		if (orient == "rv") {
 			a = "rectangle, vertical"
 		};
-		var divWidth = typeof divWidth !== 'undefined' ? divWidth : '100%';
-		var divHeight = typeof divHeight !== 'undefined' ? divHeight : '100%';
+		var adFormat = (a == "") ? '' : 'data-ad-format="' + a + '"';
+		var divWidth = typeof divWidth !== 'undefined' ? 'width:' + divWidth + ';' : '';
+		var divHeight = typeof divHeight !== 'undefined' ? 'height:' + divHeight + ';' : '';
 		try {
 			document.getElementById(divId).innerHTML = '' +
 				'<style type="text/css">' +
-				'.adslot_' + idTxt + ' { width: ' + divWidth + '; height:' + divHeight + '; }' +
+				'.adslot_' + idTxt + ' { ' + divWidth + ' ' + divHeight + ' }' +
 				'</style>' +
 				prefix +
-				'<span class="ldng_16_3x" style="display:block;max-width:' + divWidth + ';max-height:' + divHeight + '">' +
 				' <ins class="adsbygoogle adslot_' + idTxt + '" ' +
-				' style="display:block" ' +
 				' data-ad-client="' + thsBlg_as + '" ' +
 				' data-ad-slot="' + slot + '" ' +
-				' data-ad-format="' + a + '"></ins> ' +
-				'</span>' +
+				' ' + adFormat + ' ></ins> ' +
 				postfix +
 				'';
 			(adsbygoogle = window.adsbygoogle || []).push({
@@ -80,60 +81,43 @@ function asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWid
 	}
 }
 
-function asadFixId(prefix, postfix, divId, width, height, slot, channel) {
-	//v3 (span not div)
-	if (bnndQry == "yes") {
-		return;
+function asadMaker() {
+	if (detectmob()) {
+		asadRespId(
+			'<div style="width:320px; margin:0 auto;">',
+			'</div>',
+			"asOnTop", // div id
+			"xyz_asOnTop", // xyz_ + div id
+			ad_Id_resp, // slot
+			ad_Channel, // channel
+			'', // orient OR ""
+			"320px", // optional width eg "320px"
+			"100px" // optional height eg "50px" (must if width)
+		);
 	}
-	if (!document.getElementById(divId)) {
-		// 
-	} else {
-		document.getElementById(divId).innerHTML = '' +
-			prefix +
-			' <ins class="adsbygoogle" ' +
-			' style="display:inline-block;' +
-			' width:' + width + 'px;' +
-			' height:' + height + 'px" ' +
-			' data-ad-client="' + thsBlg_as + '" ' +
-			' data-ad-slot="' + slot + '"></ins>' +
-			postfix;
-		(adsbygoogle = window.adsbygoogle || []).push({
-				params: {
-					google_ad_channel: channel
-				}
-			});
+	if (!detectmob()) {
+		asadRespId(
+			'<div style="width:728px; margin:0 auto;">',
+			'</div>',
+			"asOnTop",
+			"xyz_asOnTop",
+			ad_Id_resp,
+			ad_Channel,
+			'',
+			'728px',
+			'90px'
+		);
 	}
 }
+//////// EXEC //////////
 if (ThsBlg_pg == "mainpage") {
 	// 
 }
 // 
 if (ThsBlg_pg == "itempage") {
-	var asOnTop = detectmob() ? '<div style="width:300px;margin:0 auto 10px auto" id="asOnTop"></div>' : '';
+	var asOnTop = '<div id="asOnTop"></div><hr/>';
 	$('.as_all_T0').before(asOnTop);
-	//// ad on mob only
-	asadFixId(
-		'',
-		'',
-		"asOnTop",
-		'300',
-		'100',
-		ad_Id_fixed,
-		ad_Channel
-	);
-	//// ad dtp only
-	var asOnBottom = detectmob() ? '' : '<hr/><div style="width:95%;margin: 0 auto" id="asOnBottom"></div><hr/>';
-	$('.disqcom').before(asOnBottom);
-	asadRespId(
-		'',
-		'',
-		"asOnBottom",
-		"xyz_asOnBottom",
-		ad_Id_resp,
-		ad_Channel,
-		'a'
-	);
-	///////////
+	asadMaker();
 }
 //////////////////////////////////////////////////
 ////////// /::WEBSITE:: SPECIFIC JS ///////////////

@@ -1,4 +1,4 @@
-/// www CR FORUM script 
+/// www CR FORUM /common/script.js 
 // all ::WEBSITE:: 2b chnged
 // 
 ///////// ::WEBSITE:: ////////
@@ -9,6 +9,134 @@ var htmlWritepost = '<div class="pull-right"><a id="writeapostbutton" onclick="w
 	' style="height:34px;text-transform: uppercase;letter-spacing: 2px;" href="' + urlWritepost + '" target="_top" class="writepost btn btn-primary" role="button"> &nbsp; <img style="filter: invert(1);" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGZQTFRFAAAAra2trq6uBQUFp6entLS0BwcHt7e3r6+vtra2vb29BgYGu7u7xMTExsbGDAwMz8/Pzc3NCgoKzs7OsbGxwsLCCQkJurq6srKysLCwvr6+cnJyDQ0NFBQUioqKvLy8s7Oz////x4rOFwAAACJ0Uk5T////////////////////////////////////////////AA3Qw3EAAAC9SURBVHja1JDZDsIwDASdlhZKue8b9v9/kk1IlFI3Ea9YaqbSjh0rglQZGVlIOhdnCKRXMXeGyKBQ8ufKzyQE21+itjPi0N79hnx83RrLzi/IO3kZEIzPV+QUWgj51uVa+OwHrMkNtBD6F+QTWgj73cgZtFD5+XPyAC1Uvn9PVtBC7fMl+YIWQv+RPPmsKxT+fcdkgwHB72fzFgmBZ0PskBbsnmckBVct8sIEeaGT9wVd/yVk6hcB+RxvAQYAbpZMDO0G2+4AAAAASUVORK5CYII=" height="14" width="14"/> &nbsp;<b>Write a Post</b> &nbsp; </a></div>';
 forumId = (typeof forumId === "undefined") ? 1 : forumId;
 ThsBlg_dsqs = "crickety";
+////////////////////////////////////////////////////////////////
+// 
+//////////////////////////////////////////////////
+////////// ::WEBSITE:: SPECIFIC JS ///////////////
+thsBlg_as = '\x63' + 'a' + '-\x70\x75b-' + (1378457127949688 + 1885838044407214 + 2425907941002819);
+var ad_Id_resp = '9985523445';
+var ad_Id_fixed = '1676030482';
+var ad_Channel = (ThsBlg_pg == 'mainpage') ? '8967036449' : '7599678350';
+bnndQry = "no";
+
+function asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWidth, divHeight) {
+	if (bnndQry == "yes") {
+		return;
+	}
+	// v10 - bugfix
+	if (!document.getElementById(divId)) {
+		// 
+	} else {
+		var a = "";
+		if (orient == "link") {
+			a = "link"
+		};
+		if (orient == "matched") {
+			a = "autorelaxed"
+		};
+		if (orient == "a") {
+			a = "auto"
+		};
+		if (orient == "h") {
+			a = "horizontal"
+		};
+		if (orient == "v") {
+			a = "vertical"
+		};
+		if (orient == "r") {
+			a = "rectangle"
+		};
+		if (orient == "rh") {
+			a = "rectangle, horizontal"
+		};
+		if (orient == "rv") {
+			a = "rectangle, vertical"
+		};
+		var divWidth = typeof divWidth !== 'undefined' ? divWidth : '100%';
+		var divHeight = typeof divHeight !== 'undefined' ? divHeight : '100%';
+		try {
+			document.getElementById(divId).innerHTML = '' +
+				'<style type="text/css">' +
+				'.adslot_' + idTxt + ' { width: ' + divWidth + '; height:' + divHeight + '; }' +
+				'</style>' +
+				prefix +
+				'<span class="ldng_16_3x" style="display:block;max-width:' + divWidth + ';max-height:' + divHeight + '">' +
+				' <ins class="adsbygoogle adslot_' + idTxt + '" ' +
+				' style="display:block" ' +
+				' data-ad-client="' + thsBlg_as + '" ' +
+				' data-ad-slot="' + slot + '" ' +
+				' data-ad-format="' + a + '"></ins> ' +
+				'</span>' +
+				postfix +
+				'';
+			(adsbygoogle = window.adsbygoogle || []).push({
+					params: {
+						google_ad_channel: channel
+					}
+				});
+		} catch (e) {
+			return true;
+		}
+	}
+}
+
+function asadFixId(prefix, postfix, divId, width, height, slot, channel) {
+	//v3 (span not div)
+	if (bnndQry == "yes") {
+		return;
+	}
+	if (!document.getElementById(divId)) {
+		// 
+	} else {
+		document.getElementById(divId).innerHTML = '' +
+			prefix +
+			' <ins class="adsbygoogle" ' +
+			' style="display:inline-block;' +
+			' width:' + width + 'px;' +
+			' height:' + height + 'px" ' +
+			' data-ad-client="' + thsBlg_as + '" ' +
+			' data-ad-slot="' + slot + '"></ins>' +
+			postfix;
+		(adsbygoogle = window.adsbygoogle || []).push({
+				params: {
+					google_ad_channel: channel
+				}
+			});
+	}
+}
+if (ThsBlg_pg == "mainpage") {
+	// 
+}
+// 
+if (ThsBlg_pg == "itempage") {
+	var asOnTop = detectmob() ? '<div style="width:300px;margin:0 auto 10px auto" id="asOnTop"></div>' : '';
+	$('.as_all_T0').before(asOnTop);
+	//// ad on mob only
+	asadFixId(
+		'',
+		'',
+		"asOnTop",
+		'300',
+		'100',
+		ad_Id_fixed,
+		ad_Channel
+	);
+	//// ad dtp only
+	var asOnBottom = detectmob() ? '' : '<hr/><div style="width:95%;margin: 0 auto" id="asOnBottom"></div><hr/>';
+	$('.disqcom').before(asOnBottom);
+	asadRespId(
+		'',
+		'',
+		"asOnBottom",
+		"xyz_asOnBottom",
+		ad_Id_resp,
+		ad_Channel,
+		'a'
+	);
+	///////////
+}
+//////////////////////////////////////////////////
+////////// /::WEBSITE:: SPECIFIC JS ///////////////
 // 
 // 
 // ///////// ALL SAME FROM HERE /////////////
