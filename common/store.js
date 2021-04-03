@@ -295,6 +295,10 @@ function toTitleCase(str) {
 }
 
 function asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWidth, divHeight) {
+	return;
+}
+
+function _asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWidth, divHeight) {
 	if (bnndQry == "yes") {
 		return;
 	}
@@ -353,33 +357,6 @@ function asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWid
 		} catch (e) {
 			return true;
 		}
-	}
-}
-
-
-
-function asadFixId(prefix, postfix, divId, width, height, slot, channel) {
-	//v3 (span not div)
-	if (bnndQry == "yes") {
-		return;
-	}
-	if (!document.getElementById(divId)) {
-		// 
-	} else {
-		document.getElementById(divId).innerHTML = '' +
-			prefix +
-			' <ins class="adsbygoogle" ' +
-			' style="display:inline-block;' +
-			' width:' + width + 'px;' +
-			' height:' + height + 'px" ' +
-			' data-ad-client="' + thsBlg_as + '" ' +
-			' data-ad-slot="' + slot + '"></ins>' +
-			postfix;
-		(adsbygoogle = window.adsbygoogle || []).push({
-				params: {
-					google_ad_channel: channel
-				}
-			});
 	}
 }
 
@@ -562,7 +539,6 @@ function epnSmPl(divId, adID, kw = "", categ = "", divWidth = 300, divHeight = 2
 		}
 	}
 }
-
 
 function epnFromLbls(keywords, div) {
 	// v7 -  epnSmPl now (epn rss kaput)
@@ -1041,31 +1017,8 @@ if (thsSiteTyp == "www") {
 				'</div>' +
 				'');
 		}
-		// // WWW MAINPAGE DTP+MOB AD 1/1
-		// insertBeforeHTML('prevlink', '<hr/><div style="width:90%;margin:0 auto; min-height:100px;text-align:center"><div id="as_main_btm"></div></div><hr/>');
-		// asadRespId(
-		// 	'',
-		// 	'',
-		// 	"as_main_btm",
-		// 	"xyz_as_main_btm",
-		// 	ad_Id_resp,
-		// 	ad_Channel,
-		// 	"r"
-		// );
-		// 
 		for (var i = 4; i <= 18; i++) {
-			if (i == 4 || i == 10 || i == 18) {
-				// WWW MAINPAGE DTP+MOB LU 3/3
-				// asadRespId(
-				// 	'<div style="width: 90%;margin:30px auto ; text-align:center">',
-				// 	'</div>',
-				// 	"id_bwposts_" + i.toString(),
-				// 	"xyz_id_bwposts_" + i.toString(),
-				// 	lu_Id_resp,
-				// 	lu_Channel,
-				// 	"link"
-				// );
-			}
+			if (i == 4 || i == 10 || i == 18) {}
 		}
 		// ----- /WWW MAINPAGE DTP+MOB
 	}
@@ -1078,19 +1031,7 @@ if (thsSiteTyp == "www") {
 		// 
 		// ----- WWW ITEMPAGE DTP
 		// 
-		if (!detectmob()) {
-			// WWW ITEMPAGE DTP ad 1/1
-			// insertAfterHTMLByTag('h1', '<div style="float:right;margin:50px 0 0 ' + viewport(5, 'vw') + 'px;width:' + viewport(25, 'vw') + 'px;height:' + viewport(75, 'vh') + 'px;min-height:600px;"><div id="rightbar"></div></div>');
-			// asadRespId(
-			// 	'<div>',
-			// 	'</div>',
-			// 	"rightbar",
-			// 	"xyz_rightbar",
-			// 	ad_Id_resp,
-			// 	ad_Channel,
-			// 	"v"
-			// );
-		}
+		if (!detectmob()) {}
 		// 
 		// ----- /WWW ITEMPAGE DTP
 		// 
@@ -1100,16 +1041,6 @@ if (thsSiteTyp == "www") {
 		// WWW ITEMPAGE DTP+MOB LU 2/2
 		// 
 		var luWdth = (detectmob()) ? 90 : 50;
-		// insertBeforeHTMLByClass('disqcom', '<hr/> <div style="max-width:' + viewport(luWdth, 'vw') + 'px" >   <div id="as_lu_btm_1"></div> </div> <hr/>');
-		// asadRespId(
-		// 	'<div style="text-align:center">',
-		// 	'</div>',
-		// 	"as_lu_btm_1",
-		// 	"xyz_as_lu_btm_1",
-		// 	lu_Id_resp,
-		// 	lu_Channel,
-		// 	"link"
-		// );
 	}
 	// 
 	// ----- /WWW ITEMPAGE DTP+MOB
@@ -1171,50 +1102,51 @@ if (thsSiteTyp == "store") {
 	var ad_Channel = (ThsBlg_pg == 'mainpage') ? '7699504246' : '7699504246';
 	var lu_Channel = (ThsBlg_pg == 'mainpage') ? '1712053793' : '1712053793';
 	//// STORE BOTH MAINPAGE+ITEMPAGE AD ON DTP SIDEBAR
-	var a = !detectmob() ? prependHTML('leftbar', '<div id="asSideBar"></div>') : '';
-	asadRespId(
-		'', // prefix
-		'', // postfix
-		"asSideBar", // div id
-		"xyz_asSideBar", // xyz_ + div id
-		ad_Id_resp, // slot
-		ad_Channel, // channel
-		'',
-		'160px',
-		'600px'
-	);
+	/// --- OFF: AUTO ON ----
+	// var a = !detectmob() ? prependHTML('leftbar', '<div id="asSideBar"></div>') : '';
+	// asadRespId(
+	// 	'', // prefix
+	// 	'', // postfix
+	// 	"asSideBar", // div id
+	// 	"xyz_asSideBar", // xyz_ + div id
+	// 	ad_Id_resp, // slot
+	// 	ad_Channel, // channel
+	// 	'',
+	// 	'160px',
+	// 	'600px'
+	// );
 	//// STORE BOTH MAINPAGE+ITEMPAGE
 	var asOnTop = detectmob() ? '<div id="asOnTop"></div>' : '';
 	var asOnBottom = '<hr/><div id="asOnBottom"></div><hr/>';
 	insertBeforeHTMLByClass('blogger-labels', asOnBottom);
-	insertAfterHTML('cse_container', asOnTop);
-	asadRespId(
-		'', // prefix
-		'', // postfix
-		"asOnTop", // div id
-		"xyz_asOnTop", // xyz_ + div id
-		ad_Id_resp, // slot
-		ad_Channel, // channel
-		'', // orient OR ""
-		"320px", // optional width eg "320px"
-		"50px" // optional height eg "50px" (must if width)
-	);
+	/// --- OFF: AUTO ON ----
+	// insertAfterHTML('cse_container', asOnTop);
+	// asadRespId(
+	// 	'', // prefix
+	// 	'', // postfix
+	// 	"asOnTop", // div id
+	// 	"xyz_asOnTop", // xyz_ + div id
+	// 	ad_Id_resp, // slot
+	// 	ad_Channel, // channel
+	// 	'', // orient OR ""
+	// 	"320px", // optional width eg "320px"
+	// 	"50px" // optional height eg "50px" (must if width)
+	// );
 	//// ad mob+dtp
-	asadRespId(
-		'',
-		'',
-		"asOnBottom",
-		"xyz_asOnBottom",
-		ad_Id_resp,
-		ad_Channel,
-		'',
-		'336px',
-		'280px'
-	);
+	/// --- OFF: AUTO ON ----
+	// asadRespId(
+	// 	'',
+	// 	'',
+	// 	"asOnBottom",
+	// 	"xyz_asOnBottom",
+	// 	ad_Id_resp,
+	// 	ad_Channel,
+	// 	'',
+	// 	'336px',
+	// 	'280px'
+	// );
 	// 
 	//////////////////
-
-
 	// 
 	////////
 	function amazonCleanUrl(strURL, strTLD, strAffId) {
