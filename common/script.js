@@ -15,7 +15,6 @@ ThsBlg_dsqs = "crickety";
 ////////// ::WEBSITE:: SPECIFIC JS ///////////////
 thsBlg_as = '\x63' + 'a' + '-\x70\x75b-' + (1378457127949688 + 1885838044407214 + 2425907941002819);
 var ad_Id_resp = '9985523445';
-var ad_Id_fixed = '1676030482';
 var ad_Channel = (ThsBlg_pg == 'mainpage') ? '8967036449' : '7599678350';
 bnndQry = "no";
 ///////// FUNCS ///////////
@@ -83,30 +82,32 @@ function asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWid
 
 function asadMaker() {
 	if (detectmob()) {
-		asadRespId(
-			'<div style="width:320px; margin:0 auto;">',
-			'</div>',
-			"asOnTop", // div id
-			"xyz_asOnTop", // xyz_ + div id
-			ad_Id_resp, // slot
-			ad_Channel, // channel
-			'', // orient OR ""
-			"320px", // optional width eg "320px"
-			"100px" // optional height eg "50px" (must if width)
-		);
+		/// --- OFF: AUTO ON ----
+		// asadRespId(
+		// 	'<div style="width:320px; margin:0 auto;">',
+		// 	'</div>',
+		// 	"asOnTop", // div id
+		// 	"xyz_asOnTop", // xyz_ + div id
+		// 	ad_Id_resp, // slot
+		// 	ad_Channel, // channel
+		// 	'', // orient OR ""
+		// 	"320px", // optional width eg "320px"
+		// 	"100px" // optional height eg "50px" (must if width)
+		// );
 	}
 	if (!detectmob()) {
-		asadRespId(
-			'<div style="width:728px; margin:0 auto;">',
-			'</div>',
-			"asOnTop",
-			"xyz_asOnTop",
-			ad_Id_resp,
-			ad_Channel,
-			'',
-			'728px',
-			'90px'
-		);
+		/// --- OFF: AUTO ON ----
+		// asadRespId(
+		// 	'<div style="width:728px; margin:0 auto;">',
+		// 	'</div>',
+		// 	"asOnTop",
+		// 	"xyz_asOnTop",
+		// 	ad_Id_resp,
+		// 	ad_Channel,
+		// 	'',
+		// 	'728px',
+		// 	'90px'
+		// );
 	}
 }
 //////// EXEC //////////
