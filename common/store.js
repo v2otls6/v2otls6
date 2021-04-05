@@ -295,10 +295,6 @@ function toTitleCase(str) {
 }
 
 function asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWidth, divHeight) {
-	return;
-}
-
-function _asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWidth, divHeight) {
 	if (bnndQry == "yes") {
 		return;
 	}
@@ -1116,9 +1112,9 @@ if (thsSiteTyp == "store") {
 	// 	'600px'
 	// );
 	//// STORE BOTH MAINPAGE+ITEMPAGE
-	var asOnTop = detectmob() ? '<div id="asOnTop"></div>' : '';
-	var asOnBottom = '<hr/><div id="asOnBottom"></div><hr/>';
-	insertBeforeHTMLByClass('blogger-labels', asOnBottom);
+	// var asOnTop = detectmob() ? '<div id="asOnTop"></div>' : '';
+	// var asOnBottom = '<hr/><div id="asOnBottom"></div><hr/>';
+	// insertBeforeHTMLByClass('blogger-labels', asOnBottom);
 	/// --- OFF: AUTO ON ----
 	// insertAfterHTML('cse_container', asOnTop);
 	// asadRespId(
