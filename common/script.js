@@ -116,9 +116,9 @@ if (ThsBlg_pg == "mainpage") {
 }
 // 
 if (ThsBlg_pg == "itempage") {
-	var asOnTop = '<div id="asOnTop"></div><hr/>';
-	$('.as_all_T0').before(asOnTop);
-	asadMaker();
+	// var asOnTop = '<div id="asOnTop"></div><hr/>';
+	// $('.as_all_T0').before(asOnTop);
+	// asadMaker();
 }
 //////////////////////////////////////////////////
 ////////// /::WEBSITE:: SPECIFIC JS ///////////////
