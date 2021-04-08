@@ -1091,56 +1091,26 @@ if (thsSiteTyp == "www") {
 // /////////////////  STORE. /////////////////
 // 
 if (thsSiteTyp == "store") {
+	insertAfterHTML('jadeHeader', loadingDoneBar());
 	// --- AS
 	//  cric resp ad: 9985523445, resp lu: 4187445049
 	//// STORE BOTH MAINPAGE+ITEMPAGE BOTH DTP+MOB
 	//// STORE CHANNELS
 	var ad_Channel = (ThsBlg_pg == 'mainpage') ? '7699504246' : '7699504246';
 	var lu_Channel = (ThsBlg_pg == 'mainpage') ? '1712053793' : '1712053793';
-	//// STORE BOTH MAINPAGE+ITEMPAGE AD ON DTP SIDEBAR
-	/// --- OFF: AUTO ON ----
-	// var a = !detectmob() ? prependHTML('leftbar', '<div id="asSideBar"></div>') : '';
-	// asadRespId(
-	// 	'', // prefix
-	// 	'', // postfix
-	// 	"asSideBar", // div id
-	// 	"xyz_asSideBar", // xyz_ + div id
-	// 	ad_Id_resp, // slot
-	// 	ad_Channel, // channel
-	// 	'',
-	// 	'160px',
-	// 	'600px'
-	// );
 	//// STORE BOTH MAINPAGE+ITEMPAGE
-	// var asOnTop = detectmob() ? '<div id="asOnTop"></div>' : '';
-	// var asOnBottom = '<hr/><div id="asOnBottom"></div><hr/>';
-	// insertBeforeHTMLByClass('blogger-labels', asOnBottom);
-	/// --- OFF: AUTO ON ----
-	// insertAfterHTML('cse_container', asOnTop);
-	// asadRespId(
-	// 	'', // prefix
-	// 	'', // postfix
-	// 	"asOnTop", // div id
-	// 	"xyz_asOnTop", // xyz_ + div id
-	// 	ad_Id_resp, // slot
-	// 	ad_Channel, // channel
-	// 	'', // orient OR ""
-	// 	"320px", // optional width eg "320px"
-	// 	"50px" // optional height eg "50px" (must if width)
-	// );
-	//// ad mob+dtp
-	/// --- OFF: AUTO ON ----
-	// asadRespId(
-	// 	'',
-	// 	'',
-	// 	"asOnBottom",
-	// 	"xyz_asOnBottom",
-	// 	ad_Id_resp,
-	// 	ad_Channel,
-	// 	'',
-	// 	'336px',
-	// 	'280px'
-	// );
+	insertAfterHTML('cse_container', '<div id="asOnTop"></div>');
+	asadRespId(
+		'', // prefix
+		'', // postfix
+		"asOnTop", // div id
+		"xyz_asOnTop", // xyz_ + div id
+		ad_Id_resp, // slot
+		ad_Channel, // channel
+		'', // orient OR ""
+		'320px',
+		'100px'
+	);
 	// 
 	//////////////////
 	// 
@@ -1193,6 +1163,7 @@ if (thsSiteTyp == "store") {
 			$(this).addClass('btn btn-success');
 		});
 		// 
+		$('#loadingDoneBar').remove();
 		// 
 	});
 }
