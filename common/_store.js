@@ -999,97 +999,97 @@ function itempage() {
 // 
 // ///////////////// WWW. ///////////////// 
 // 
-if (thsSiteTyp == "www") {
-	//  cric resp ad: 9985523445, resp lu: 4187445049
-	//// WWW CHANNELS
-	var ad_Channel = (ThsBlg_pg == 'mainpage') ? '8967036449' : '7599678350';
-	var lu_Channel = (ThsBlg_pg == 'mainpage') ? '7073906664' : '8653795477';
-	// WWW MAINPAGE --------------
-	if (ThsBlg_pg == "mainpage") {
-		// 
-		// ----- WWW MAINPAGE DTP+MOB
-		// IMPORTANT - ELEMS-4-AS AND POST1 CLASSES
-		var a = document.getElementsByClassName('post1');
-		for (var i = 0; i < a.length; i++) {
-			var post1 = document.getElementsByClassName('post1')[i];
-			post1.setAttribute('id', 'postnum' + (i + 1));
-			post1.insertAdjacentHTML("afterend",
-				'<div class="as_main_bwposts">' +
-				'<div class="c_bwposts_' + i + '" id="id_bwposts_' + i + '"></div>' +
-				'</div>' +
-				'');
-		}
-		for (var i = 4; i <= 18; i++) {
-			if (i == 4 || i == 10 || i == 18) {}
-		}
-		// ----- /WWW MAINPAGE DTP+MOB
-	}
-	// 
-	// /WWW MAINPAGE --------------
-	// 
-	// WWW ITEMPAGE --------------
-	// 
-	if (ThsBlg_pg == "itempage" && OK2Go("asad")) {
-		// 
-		// ----- WWW ITEMPAGE DTP
-		// 
-		if (!detectmob()) {}
-		// 
-		// ----- /WWW ITEMPAGE DTP
-		// 
-		// 
-		// ----- WWW ITEMPAGE DTP+MOB
-		// 
-		// WWW ITEMPAGE DTP+MOB LU 2/2
-		// 
-		var luWdth = (detectmob()) ? 90 : 50;
-	}
-	// 
-	// ----- /WWW ITEMPAGE DTP+MOB
-	//
-	// ============= JQ =======================
-	$(document).ready(function() {
-		// ---- EXEC:MENUS+FOOTR ----
-		// : WWW.CRICKETY.COM : //
-		writeInnerHTMLByClass("as_all_T0", '' +
-			'<div class="clearer"></div>' +
-			'<table style="width:100%"><tr>' +
-			'<td> <a style="" href="' +
-			// 
-			// '#' + //// to disable 
-			'//a.crickety.com/writepost/' + /// writepost
-			// 
-			'" class="writepost btn btn-default" role="button">Write a Post</a>   </td>  ' +
-			// '<td style="width:148px">  <div style="height:34px;float:right;"> ' + addThisContainer() + ' </div> </td>' +
-			'</tr></table>' +
-			'<div class="clearer"></div>' +
-			'');
-		if (ThsBlg_pg == "mainpage") {
-			mainpage();
-		}
-		if (ThsBlg_pg == "itempage") {
-			itempage();
-		}
-		// ---- LAST EXEC ALL ----
-		// ---- /LAST EXEC ALL ---- 
-	}); //(document).ready(function
-	// ========= window on load ALL AFTER  =========
-	$(window).on("load", function() {
-		// itempage
-		if (ThsBlg_pg == 'itempage') {
-			$(".disqcom").html(
-				'<div id="disqus_thread"></div>' +
-				'<div style="padding: 150px 0"></div>' + // req imp for disq mob!
-				'');
-			disqusAsync(ThsBlg_dsqs, 'disqus_thread');
-			$('#ldngPrgssBar').remove();
-		}
-		// ALL
-		// addthisAsync();
-	});
-	// 
-	// 
-}
+// if (thsSiteTyp == "www") {
+// 	//  cric resp ad: 9985523445, resp lu: 4187445049
+// 	//// WWW CHANNELS
+// 	var ad_Channel = (ThsBlg_pg == 'mainpage') ? '8967036449' : '7599678350';
+// 	var lu_Channel = (ThsBlg_pg == 'mainpage') ? '7073906664' : '8653795477';
+// 	// WWW MAINPAGE --------------
+// 	if (ThsBlg_pg == "mainpage") {
+// 		// 
+// 		// ----- WWW MAINPAGE DTP+MOB
+// 		// IMPORTANT - ELEMS-4-AS AND POST1 CLASSES
+// 		var a = document.getElementsByClassName('post1');
+// 		for (var i = 0; i < a.length; i++) {
+// 			var post1 = document.getElementsByClassName('post1')[i];
+// 			post1.setAttribute('id', 'postnum' + (i + 1));
+// 			post1.insertAdjacentHTML("afterend",
+// 				'<div class="as_main_bwposts">' +
+// 				'<div class="c_bwposts_' + i + '" id="id_bwposts_' + i + '"></div>' +
+// 				'</div>' +
+// 				'');
+// 		}
+// 		for (var i = 4; i <= 18; i++) {
+// 			if (i == 4 || i == 10 || i == 18) {}
+// 		}
+// 		// ----- /WWW MAINPAGE DTP+MOB
+// 	}
+// 	// 
+// 	// /WWW MAINPAGE --------------
+// 	// 
+// 	// WWW ITEMPAGE --------------
+// 	// 
+// 	if (ThsBlg_pg == "itempage" && OK2Go("asad")) {
+// 		// 
+// 		// ----- WWW ITEMPAGE DTP
+// 		// 
+// 		if (!detectmob()) {}
+// 		// 
+// 		// ----- /WWW ITEMPAGE DTP
+// 		// 
+// 		// 
+// 		// ----- WWW ITEMPAGE DTP+MOB
+// 		// 
+// 		// WWW ITEMPAGE DTP+MOB LU 2/2
+// 		// 
+// 		var luWdth = (detectmob()) ? 90 : 50;
+// 	}
+// 	// 
+// 	// ----- /WWW ITEMPAGE DTP+MOB
+// 	//
+// 	// ============= JQ =======================
+// 	$(document).ready(function() {
+// 		// ---- EXEC:MENUS+FOOTR ----
+// 		// : WWW.CRICKETY.COM : //
+// 		writeInnerHTMLByClass("as_all_T0", '' +
+// 			'<div class="clearer"></div>' +
+// 			'<table style="width:100%"><tr>' +
+// 			'<td> <a style="" href="' +
+// 			// 
+// 			// '#' + //// to disable 
+// 			'//a.crickety.com/writepost/' + /// writepost
+// 			// 
+// 			'" class="writepost btn btn-default" role="button">Write a Post</a>   </td>  ' +
+// 			// '<td style="width:148px">  <div style="height:34px;float:right;"> ' + addThisContainer() + ' </div> </td>' +
+// 			'</tr></table>' +
+// 			'<div class="clearer"></div>' +
+// 			'');
+// 		if (ThsBlg_pg == "mainpage") {
+// 			mainpage();
+// 		}
+// 		if (ThsBlg_pg == "itempage") {
+// 			itempage();
+// 		}
+// 		// ---- LAST EXEC ALL ----
+// 		// ---- /LAST EXEC ALL ---- 
+// 	}); //(document).ready(function
+// 	// ========= window on load ALL AFTER  =========
+// 	$(window).on("load", function() {
+// 		// itempage
+// 		if (ThsBlg_pg == 'itempage') {
+// 			$(".disqcom").html(
+// 				'<div id="disqus_thread"></div>' +
+// 				'<div style="padding: 150px 0"></div>' + // req imp for disq mob!
+// 				'');
+// 			disqusAsync(ThsBlg_dsqs, 'disqus_thread');
+// 			$('#ldngPrgssBar').remove();
+// 		}
+// 		// ALL
+// 		// addthisAsync();
+// 	});
+// 	// 
+// 	// 
+// }
 // 
 // ///////////////// / WWW. ///////////////// 
 // 
@@ -1218,7 +1218,7 @@ $(window).on("load", function() {
 				epnFromLbls(kw, "ebRSBtm_1");
 				amzFromLbls(kw, thsBlg_amz.def_cat_2, "grid", "ebRSBtm_2");
 			} else {
-				amzFromLbls(kw, thsBlg_amz.def_cat_2, "grid", "ebRSBtm_2");
+				amzFromLbls(kw, thsBlg_amz.def_cat_2, "grid", "ebRSBtm_1");
 				epnFromLbls(kw, "ebRSBtm_2");
 			}
 			// ---/AFF FROM LABLES
