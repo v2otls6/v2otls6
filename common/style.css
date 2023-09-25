@@ -42,10 +42,21 @@
   margin-bottom: 2vh !important;
 }
 
+/*first one only*/
 .img_src {
+  float: right;
   width: 60%;
   max-width: 400px;
-  float: right;
+  max-height: 400px;
+  margin: 10px 0 10px 10px;
+}
+
+/*all subsequent ones*/
+.img_src ~ .img_src {
+  float: none;
+  width: 60%;
+  max-width: 400px;
+  max-height: 400px;
   margin: 10px 0 10px 10px;
 }
 

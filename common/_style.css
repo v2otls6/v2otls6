@@ -1,6 +1,45 @@
+/*
+* ::WEBSITE::
+*/
+
 .crickety {
   display: none !important;
   visibility: hidden !important;
+}
+
+/*
+*
+* REST SAME
+*
+*/
+
+/*
+* #mainpage
+*/
+#mainpage h1, h2, h3, h4, h5 {
+  line-height: 1.1em;
+}
+
+#mainpage h2 {
+  font-size: x-large;
+}
+
+#mainpage h3 {
+  font-size: large;
+}
+
+#mainpage .container .row {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: dotted 1px #aaa;
+}
+
+#mainpage .row p {
+  word-break: break-all;
+}
+
+.mast {
+  margin-bottom: 2vh !important;
 }
 
 .img_src {
@@ -8,7 +47,6 @@
   max-width: 400px;
   float: right;
   margin: 10px 0 10px 10px;
-  @media screen and (max-width: 800px) {}
 }
 
 .img_src img {
@@ -18,4 +56,8 @@
 .disqcom {
   width: 95%;
   margin: 15px auto;
+}
+
+#footer {
+  margin-top: 200px;
 }
