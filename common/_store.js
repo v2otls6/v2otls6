@@ -36,6 +36,7 @@ thsBlg_dyn_catcher = "www.crickety.com/common/c/";
 ThsBlg_aT_cd = 'crickety';
 thsBlg_img_cdn = "www.crickety.com/common/i/";
 thsBlg_gasJsnPrx = "\x41\x4B\x66\x79\x63\x62\x7A\x41\x33\x6F\x33\x77\x62\x34\x57\x6D\x48\x61\x74\x57\x33\x5A\x61\x47\x71\x59\x33\x42\x35\x73\x52\x4E\x56\x50\x4E\x67\x6C\x75\x47\x38\x6A\x79\x71\x33\x48\x64\x77\x4A\x48\x67\x5A\x71\x78\x77\x6B";
+thsBlg_reportProductForm = '1FAIpQLSc6OnBWcMB5vRIG4e_RCBYZ1wZxCxPeWu-bLRKireXNcbtdNQ'; // gd form
 // 
 // 
 // 
@@ -998,99 +999,6 @@ function itempage() {
 // 
 // 
 // ///////////////// WWW. ///////////////// 
-// 
-// if (thsSiteTyp == "www") {
-// 	//  cric resp ad: 9985523445, resp lu: 4187445049
-// 	//// WWW CHANNELS
-// 	var ad_Channel = (ThsBlg_pg == 'mainpage') ? '8967036449' : '7599678350';
-// 	var lu_Channel = (ThsBlg_pg == 'mainpage') ? '7073906664' : '8653795477';
-// 	// WWW MAINPAGE --------------
-// 	if (ThsBlg_pg == "mainpage") {
-// 		// 
-// 		// ----- WWW MAINPAGE DTP+MOB
-// 		// IMPORTANT - ELEMS-4-AS AND POST1 CLASSES
-// 		var a = document.getElementsByClassName('post1');
-// 		for (var i = 0; i < a.length; i++) {
-// 			var post1 = document.getElementsByClassName('post1')[i];
-// 			post1.setAttribute('id', 'postnum' + (i + 1));
-// 			post1.insertAdjacentHTML("afterend",
-// 				'<div class="as_main_bwposts">' +
-// 				'<div class="c_bwposts_' + i + '" id="id_bwposts_' + i + '"></div>' +
-// 				'</div>' +
-// 				'');
-// 		}
-// 		for (var i = 4; i <= 18; i++) {
-// 			if (i == 4 || i == 10 || i == 18) {}
-// 		}
-// 		// ----- /WWW MAINPAGE DTP+MOB
-// 	}
-// 	// 
-// 	// /WWW MAINPAGE --------------
-// 	// 
-// 	// WWW ITEMPAGE --------------
-// 	// 
-// 	if (ThsBlg_pg == "itempage" && OK2Go("asad")) {
-// 		// 
-// 		// ----- WWW ITEMPAGE DTP
-// 		// 
-// 		if (!detectmob()) {}
-// 		// 
-// 		// ----- /WWW ITEMPAGE DTP
-// 		// 
-// 		// 
-// 		// ----- WWW ITEMPAGE DTP+MOB
-// 		// 
-// 		// WWW ITEMPAGE DTP+MOB LU 2/2
-// 		// 
-// 		var luWdth = (detectmob()) ? 90 : 50;
-// 	}
-// 	// 
-// 	// ----- /WWW ITEMPAGE DTP+MOB
-// 	//
-// 	// ============= JQ =======================
-// 	$(document).ready(function() {
-// 		// ---- EXEC:MENUS+FOOTR ----
-// 		// : WWW.CRICKETY.COM : //
-// 		writeInnerHTMLByClass("as_all_T0", '' +
-// 			'<div class="clearer"></div>' +
-// 			'<table style="width:100%"><tr>' +
-// 			'<td> <a style="" href="' +
-// 			// 
-// 			// '#' + //// to disable 
-// 			'//a.crickety.com/writepost/' + /// writepost
-// 			// 
-// 			'" class="writepost btn btn-default" role="button">Write a Post</a>   </td>  ' +
-// 			// '<td style="width:148px">  <div style="height:34px;float:right;"> ' + addThisContainer() + ' </div> </td>' +
-// 			'</tr></table>' +
-// 			'<div class="clearer"></div>' +
-// 			'');
-// 		if (ThsBlg_pg == "mainpage") {
-// 			mainpage();
-// 		}
-// 		if (ThsBlg_pg == "itempage") {
-// 			itempage();
-// 		}
-// 		// ---- LAST EXEC ALL ----
-// 		// ---- /LAST EXEC ALL ---- 
-// 	}); //(document).ready(function
-// 	// ========= window on load ALL AFTER  =========
-// 	$(window).on("load", function() {
-// 		// itempage
-// 		if (ThsBlg_pg == 'itempage') {
-// 			$(".disqcom").html(
-// 				'<div id="disqus_thread"></div>' +
-// 				'<div style="padding: 150px 0"></div>' + // req imp for disq mob!
-// 				'');
-// 			disqusAsync(ThsBlg_dsqs, 'disqus_thread');
-// 			$('#ldngPrgssBar').remove();
-// 		}
-// 		// ALL
-// 		// addthisAsync();
-// 	});
-// 	// 
-// 	// 
-// }
-// 
 // ///////////////// / WWW. ///////////////// 
 // 
 // 
@@ -1138,36 +1046,41 @@ if (thsSiteTyp == "store") {
 		// 
 		/// amz url clean
 		// *** CLEAN ALL AMZ API URLS to .com/dp/xxx?tag=yyy ***
-		$('.postbody a').each(function(index) {
-			var aurl = $(this).attr('href');
-			if (aurl.match(/(amazon\.|amzn\.)/igm)) {
-				var a = amazonCleanUrl(aurl, "com", thsBlg_amz.com);
-				$(this).attr('href', a);
-				// console.log(a);
-			}
-		});
-		//// amz url clean
-		// 
+		try {
+			$('.postbody a').each(function(index) {
+				var aurl = $(this).attr('href').trim();
+				if (aurl.match(/(amazon\.|amzn\.)/igm)) {
+					var a = amazonCleanUrl(aurl, "com", thsBlg_amz.com);
+					$(this).attr('href', a);
+					// console.log(a);
+				}
+			});
+		} catch (e) {}
+		////
 		//// epn new "track urls" instead of rover
-		$('.postbody a').each(function(index) {
-			var aurl = $(this).attr('href').trim();
-			if (aurl.match(/rover\.ebay/im)) {
-				// console.log(aurl);
-				var a = epn_rover2newURL(aurl, thsBlg_epn)
-				$(this).attr('href', a);
-				// console.log(a);
-			}
-		});
+		try {
+			$('.postbody a').each(function(index) {
+				var aurl = $(this).attr('href').trim();
+				if (aurl.match(/rover\.ebay/im)) {
+					// console.log(aurl);
+					var a = epn_rover2newURL(aurl, thsBlg_epn)
+					$(this).attr('href', a);
+					// console.log(a);
+				}
+			});
+		} catch (e) {}
 		/////
 		// 
-		$('.postbody h3 a').each(function(index) {
-			$(this).html(' More Details &amp; Prices ');
-			$(this).addClass('btn btn-info');
-		});
-		$('.postbody a:nth-child(6)').each(function(index) {
-			$(this).html(' Buy Now ');
-			$(this).addClass('btn btn-success');
-		});
+		try {
+			$('.postbody h3 a').each(function(index) {
+				$(this).html(' More Details &amp; Prices ');
+				$(this).addClass('btn btn-info');
+			});
+			$('.postbody a:nth-child(6)').each(function(index) {
+				$(this).html(' Buy Now ');
+				$(this).addClass('btn btn-success');
+			});
+		} catch (e) {}
 		// 
 		$('#loadingDoneBar').remove();
 		// 
@@ -1211,16 +1124,18 @@ $(window).on("load", function() {
 				"amzSB_T");
 			// }
 			// ---AFF FROM LABLES
-			$('.blogger-labels').before('<hr/><h4>If you liked it, ALSO TRY:</h4><hr/><div  class="ldng_16_3x"  id="ebRSBtm_1"></div><hr/><div class="ldng_16_3x"  id="ebRSBtm_2"></div><hr/>');
+			$('.blogger-labels').before('<hr/><div style="text-align:right;margin: -18px 0;"><a style="font: normal 12px/1em Arial;" rel="nofollow" href="https://docs.google.com/forms/d/e/' + thsBlg_reportProductForm + '/viewform?usp=sf_link"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Report this item</a></div><div style="clear:both;"></div><hr/><h4>If you liked it, ALSO TRY:</h4><hr/><div  class="ldng_16_3x"  id="ebRSBtm_1"></div><hr/><div class="ldng_16_3x"  id="ebRSBtm_2"></div><hr/>');
 			var kw = $('.blogger-labels').text().replace(/\s+/igm, " ").trim().replace(/(labels\:)/igm, "").trim();
 			// console.log(kw);
-			if ($('.postbody h3 a').attr('href').match(/amazon\./)) {
-				epnFromLbls(kw, "ebRSBtm_1");
-				amzFromLbls(kw, thsBlg_amz.def_cat_2, "grid", "ebRSBtm_2");
-			} else {
-				amzFromLbls(kw, thsBlg_amz.def_cat_2, "grid", "ebRSBtm_1");
-				epnFromLbls(kw, "ebRSBtm_2");
-			}
+			try {
+				if ($('.postbody h3 a').attr('href').match(/amazon\./)) {
+					epnFromLbls(kw, "ebRSBtm_1"); // kaput
+					amzFromLbls(kw, thsBlg_amz.def_cat_2, "grid", "ebRSBtm_2");
+				} else {
+					amzFromLbls(kw, thsBlg_amz.def_cat_2, "grid", "ebRSBtm_1");
+					epnFromLbls(kw, "ebRSBtm_2"); // kaput
+				}
+			} catch (e) {}
 			// ---/AFF FROM LABLES
 			$.getScript("https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.14/iframeResizer.min.js").done(function() {
 				$('.iframeresize_class').iFrameResize();
