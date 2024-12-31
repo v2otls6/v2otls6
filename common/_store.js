@@ -301,7 +301,11 @@ function toTitleCase(str) {
 	});
 }
 
-function asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWidth, divHeight) {
+// 2023-10-10 all manual AS off
+
+function asadRespId() {}
+
+function _asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWidth, divHeight) {
 	if (bnndQry == "yes") {
 		return;
 	}
@@ -1013,18 +1017,18 @@ if (thsSiteTyp == "store") {
 	var ad_Channel = (ThsBlg_pg == 'mainpage') ? '7699504246' : '7699504246';
 	var lu_Channel = (ThsBlg_pg == 'mainpage') ? '1712053793' : '1712053793';
 	//// STORE BOTH MAINPAGE+ITEMPAGE
-	insertAfterHTML('cse_container', '<div id="asOnTop"></div>');
-	asadRespId(
-		'', // prefix
-		'', // postfix
-		"asOnTop", // div id
-		"xyz_asOnTop", // xyz_ + div id
-		ad_Id_resp, // slot
-		ad_Channel, // channel
-		'', // orient OR ""
-		'320px',
-		'100px'
-	);
+	// insertAfterHTML('cse_container', '<div id="asOnTop"></div>');
+	// asadRespId(
+	// 	'', // prefix
+	// 	'', // postfix
+	// 	"asOnTop", // div id
+	// 	"xyz_asOnTop", // xyz_ + div id
+	// 	ad_Id_resp, // slot
+	// 	ad_Channel, // channel
+	// 	'', // orient OR ""
+	// 	'320px',
+	// 	'100px'
+	// );
 	// 
 	//////////////////
 	// 
@@ -1143,7 +1147,7 @@ $(window).on("load", function() {
 		}
 		// 
 		///// HNDLE BRKN IMGS - v2
-		// req: epnSrchURL()
+		// req: epnSrchURL , amzSrchURL, ga_evCatVal
 		$('.postbody a img').each(function(index) {
 			if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth < 100) { // < 100 (ebay fallbck is 80px w) (default is 0 )
 				var imgSrc = $(this).attr('src') || '';
@@ -1161,6 +1165,14 @@ $(window).on("load", function() {
 				$("#mssngImgRedir_" + index).click(function() {
 					ga_evCatVal('store', 'inf_btnLocItmNw:U: ' + redirURL);
 				});
+
+				//// EPN AD IF BRKN IMG
+				$('.panel-footer').remove();
+				$('#brknimg').after('<div id="epnSmPl_brknimg"></div>')
+				epnSmPl("epnSmPl_brknimg", thsBlg_epn_epnSmPl);
+
+				// 
+
 			}
 		});
 		/// HNDLE BRKN IMGS
