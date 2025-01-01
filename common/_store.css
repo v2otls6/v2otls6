@@ -1,14 +1,12 @@
-/*  === ZD SPECIFIC  ===  */
+/*  === CR SPECIFIC  ===  */
 
 #logoheader {
-  background: black;
+  background: #1e79a7;
 }
 
-#logoheader img {
-  filter: invert(1);
-}
+#logoheader img {}
 
-/*  === ZD SPECIFIC  ===  */
+/*  === CR SPECIFIC  ===  */
 
 /*  === COMMON ===  */
 
