@@ -1,4 +1,4 @@
-/// www CR FORUM /common/script.js 
+/// www CR FORUM www.crickety.com/common/script.js 
 // all ::WEBSITE:: 2b chnged
 // 
 ///////// ::WEBSITE:: ////////
@@ -18,7 +18,11 @@ var ad_Id_resp = '9985523445';
 var ad_Channel = (ThsBlg_pg == 'mainpage') ? '8967036449' : '7599678350';
 bnndQry = "no";
 ///////// FUNCS ///////////
-function asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWidth, divHeight) {
+
+// 2023-10-10 all manual AS off
+function asadRespId() {}
+
+function _asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWidth, divHeight) {
 	if (bnndQry == "yes") {
 		return;
 	}
@@ -82,32 +86,10 @@ function asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWid
 
 function asadMaker() {
 	if (detectmob()) {
-		/// --- OFF: AUTO ON ----
-		// asadRespId(
-		// 	'<div style="width:320px; margin:0 auto;">',
-		// 	'</div>',
-		// 	"asOnTop", // div id
-		// 	"xyz_asOnTop", // xyz_ + div id
-		// 	ad_Id_resp, // slot
-		// 	ad_Channel, // channel
-		// 	'', // orient OR ""
-		// 	"320px", // optional width eg "320px"
-		// 	"100px" // optional height eg "50px" (must if width)
-		// );
+ 
 	}
 	if (!detectmob()) {
-		/// --- OFF: AUTO ON ----
-		// asadRespId(
-		// 	'<div style="width:728px; margin:0 auto;">',
-		// 	'</div>',
-		// 	"asOnTop",
-		// 	"xyz_asOnTop",
-		// 	ad_Id_resp,
-		// 	ad_Channel,
-		// 	'',
-		// 	'728px',
-		// 	'90px'
-		// );
+ 
 	}
 }
 //////// EXEC //////////
