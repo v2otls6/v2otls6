@@ -5,12 +5,12 @@
 html {
   --main-font-family: Roboto, Arial, sans-serif;
   --headline-font-family: "Roboto Condensed", sans-serif;
-  --logoheader-color: black;
-  --panel-background-color: #eee;
-  --logoheader-links-color: #ddd;
+  --logoheader-color: #257ea5;
+  --panel-background-color: #c5dce6;
+  --logoheader-links-color: white;
   --text-color: black;
   --link-color: black;
-  --button-background-color: #888;
+  --button-background-color: #257ea5;
   --button-text-color: white;
   --report-text-color: #555;
   --pager-background-color: #bbb;
