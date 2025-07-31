@@ -86,10 +86,10 @@ function _asadRespId(prefix, postfix, divId, idTxt, slot, channel, orient, divWi
 
 function asadMaker() {
 	if (detectmob()) {
- 
+
 	}
 	if (!detectmob()) {
- 
+
 	}
 }
 //////// EXEC //////////
@@ -447,7 +447,8 @@ function mainpage() {
 	} catch (e) {}
 } // MAINPAGE
 // 
-// 
+//
+
 function itempage() {
 	// REQ JQ
 	// --- BOOTSTRAP DOM+CSS ---
@@ -461,6 +462,35 @@ function itempage() {
 			$(this).html() +
 			'</b></div>');
 	});
+
+	// youtube embed 
+
+	$('head').append('<style>.responsive-embed { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin:10px auto} .responsive-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>');
+
+	try {
+		$('.postbody').each(function() {
+			var html = $(this).html();
+
+			var youtubeUrlPattern = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/g;
+
+			html = html.replace(youtubeUrlPattern, function(match, videoId) {
+				return `
+                <div class="responsive-embed">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
+                </div>
+            `;
+			});
+
+			$(this).html(html);
+		});
+	} catch (e) {}
+
+	//  // youtube embed
+
+	// 
+	// 
+	// 
+
 	// legacy inline comms in posts
 	$(".o_post").addClass("panel panel-default list-group-item row");
 	$(".o_post_subj").addClass("panel");
@@ -468,9 +498,7 @@ function itempage() {
 	$(".o_post_text").addClass("col-md-9 col-xs-offset-1");
 	$(".container iframe.cr_video").wrap(' <div class="embed-responsive embed-responsive-16by9"/> ');
 	$(".container iframe.cr_video").addClass('embed-responsive-item');
-	//writeRSS("https://feeds.feedburner.com/",document.getElementById("provdiv_topics_feed"));
-	//writeRSS("https://feeds.feedburner.com/",document.getElementById("provdiv_topics_feed2"));
-	//writeRSS("https://feeds.feedburner.com/",document.getElementById("provdiv_events_feed"));
+
 } // ITEMPAGE
 // 
 function userpage() {
