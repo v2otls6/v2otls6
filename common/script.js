@@ -93,6 +93,26 @@ function asadMaker() {
 	}
 }
 //////// EXEC //////////
+
+if (ThsBlg_pg == "mainpage" || ThsBlg_pg == "itempage") {
+	// 
+	$('.container').before(`
+
+	<div 
+	style="font-size:13px; text-align: center; margin: 17px auto 0 auto; width: 300px; background: bisque; padding: 4px;">
+	Visit our 
+	<a style="font-weight:bold;" 
+	title="CRICKET SPORTS SHOP" 
+	href="https://store.crickety.com">
+	<u>Cricket Store</u>
+	</a> 
+	for the best deals in Cricketing stuff for everyone!
+	</div>
+
+`);
+
+}
+
 if (ThsBlg_pg == "mainpage") {
 	// 
 }
