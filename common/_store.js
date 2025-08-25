@@ -30,7 +30,8 @@ thsBlg_img_cdn = "www.crickety.com/common/i/";
 thsBlg_gasJsnPrx = "\x41\x4B\x66\x79\x63\x62\x7A\x41\x33\x6F\x33\x77\x62\x34\x57\x6D\x48\x61\x74\x57\x33\x5A\x61\x47\x71\x59\x33\x42\x35\x73\x52\x4E\x56\x50\x4E\x67\x6C\x75\x47\x38\x6A\x79\x71\x33\x48\x64\x77\x4A\x48\x67\x5A\x71\x78\x77\x6B";
 thsBlg_reportProductForm = "1FAIpQLSc6OnBWcMB5vRIG4e_RCBYZ1wZxCxPeWu-bLRKireXNcbtdNQ";
 thsBlg_menulinks = [
-	'<a style="text-align:center; background: #555; padding: 3px 5px; color: white; border-radius: 30px; text-decoration: none;" href="https://store.crickety.com/p/post.html"><b style="font-size:150%;line-height:100%">+</b> <span>POST YOUR PRODUCT</span></a>'
+	'<a style="text-align:center; background: #555; padding: 3px 5px; color: white; border-radius: 30px; text-decoration: none;" href="https://store.crickety.com/p/post.html"><b style="font-size:150%;line-height:100%">+</b> <span>POST YOUR PRODUCT</span></a>',
+	'<a href="https://www.crickety.com/">Cricket Forum</a>'
 
 ];
 // -------- /CR ONLY VARS ---------
